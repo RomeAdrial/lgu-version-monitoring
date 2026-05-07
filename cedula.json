@@ -1,23 +1,53 @@
 {
-  "system": "Cedula System",
+  "system": "Cedula Web System",
   "versions": [
     {
       "id": "c1",
-      "version": "2.0.0",
-      "datetime": "2026-05-05 2:30 PM",
-      "latest": false,
-      "title": "Cedula Module: Initial Setup, UI Enhancements, and Minor Fixes",
-      "newFeatures": ["Cedula module created"],
-      "improvements": ["Form validation improved"]
+      "version": "1.3.0",
+      "datetime": "2026-04-05 2:30 PM",
+      "latest": true,
+      "title": "Initial Release of Revised Cedula System",
+"newFeatures": [
+  "Added Cedula form UI redesigned to mimic the physical cedula form for better familiarity and easier user understanding",
+  "Added validation for taxpayer input including birthdate restriction (minimum age 15 years old)"
+],
+
+"improvements": [
+  "Improved Cedula issuance form layout for better usability and clarity",
+  "Improved tax computation and payment calculation process for accuracy",
+  "Improved treasury transaction management layout to match the taxpayer-side form design for consistency",
+  "Improved transaction filtering and search functionality for better record handling and navigation"
+],
+
+"fixes": [
+  "Fixed tax computation and payment calculation issues",
+  "Fixed payment redirection issue to Universal Checkout",
+  "Fixed transaction count glitch that changes over time",
+  "Fixed rendering issue where pending and successful transactions were not properly separated",
+  "Fixed edit, approve, and reject functionality in treasury module",
+  "Fixed remarks handling so it only appears under approved or rejected transactions",
+  "Fixed filtering and search inconsistencies in treasury transactions"
+]
     },
     {
-      "id": "c2",
-      "version": "2.1.0",
-      "latest": true,
-      "title": "Cedula Module: Initial Setup, UI Enhancements, and Minor Fixes",
-       "datetime": "2026-05-05 2:30 PM",
-      "newFeatures": ["QR verification added"],
-      "fixes": ["Fixed PDF bug"]
+      "id": "m2",
+      "version": "1.2.0",
+      "datetime": "2026-04-05 2:30 PM",
+      "latest": false,
+      "title": "UI Enhancements and Multi-Account Code Support",
+      "newFeatures": [],
+      "improvements": ["Updated the UI design with a more formal look and simpler, less colorful layout","Improved system to properly process multiple account codes when needed"],
+      "fixes": ["Fixed query to handle multiple account codes instead of only one"]
+    },
+    {
+      "id": "m1",
+      "version": "1.0.0",
+      "datetime": "2026-03-15 9:00 AM",
+      "latest": false,
+      "title": "Initial Release of Miscellaneous System",
+      "newFeatures": ["Implemented the Miscellaneous System inside the WSP platform, accessible after user login","Added a dedicated Miscellaneous page for taxpayers","Introduced selectable miscellaneous certificates/services for payment","Added service descriptions and automatic total amount computation","Enabled users to proceed directly to payment from the Miscellaneous module","Integrated SPIDC Universal Checkout payment system","Enabled automatic generation of receipt / EOR (Electronic Official Receipt) after successful payment"],
+      "improvements": ["Streamlined navigation from WSP system to Miscellaneous module for faster access","Improved user payment flow with a direct checkout process (reduced steps)","Enhanced clarity of service selection through structured descriptions and pricing display","Improved system integration between Miscellaneous module and SPIDC payment gateway"],
+      "fixes": []
     }
   ]
 }
