@@ -1,15 +1,20 @@
 {
   "system": "Cedula Web System",
   "versions": [
-      {
+    {
       "id": "c3",
       "version": "2.2.0",
       "datetime": "2026-04-05 2:30 PM",
       "latest": true,
       "title": "UI Enhancements and Multi-Account Code Support",
       "newFeatures": [],
-      "improvements": ["Updated the UI design with a more formal look and simpler, less colorful layout","Improved system to properly process multiple account codes when needed"],
-      "fixes": ["Fixed query to handle multiple account codes instead of only one"]
+      "improvements": [
+        "Updated the UI design with a more formal look and simpler, less colorful layout",
+        "Improved system to properly process multiple account codes when needed"
+      ],
+      "fixes": [
+        "Fixed query to handle multiple account codes instead of only one"
+      ]
     },
     {
       "id": "c2",
@@ -17,17 +22,16 @@
       "datetime": "2026-03-15 9:00 AM",
       "latest": false,
       "title": "Comprehensive Update: Government-Inspired UI Revamp, Digital Cedula Release, Email Notifications, and Automated LGU Employee Processing",
-    {
-  "newFeatures": [
-    "Added email notification system for successful payments with instructions for taxpayers to visit LGU for physical Cedula claiming",
-    "Added Digital Cedula issuance that automatically generates and releases a digital copy after successful payment",
-    "Added LGU employee toggle feature with employee number verification modal, enabling automatic retrieval of employee information and auto-filling of Cedula form including automatic tax computation"
-  ],
-  "improvements": [
-    "Redesigned all Cedula pages with a more formal, government-inspired, clean and elegant layout for improved usability for both taxpayers and treasury users",
-    "Added skeleton loader when loading transaction counts per process to improve user experience and provide clear loading feedback during data fetching"
-  ],
-  "fixes": []
+      "newFeatures": [
+        "Added email notification system for successful payments with instructions for taxpayers to visit LGU for physical Cedula claiming",
+        "Added Digital Cedula issuance that automatically generates and releases a digital copy after successful payment",
+        "Added LGU employee toggle feature with employee number verification modal, enabling automatic retrieval of employee information and auto-filling of Cedula form including automatic tax computation"
+      ],
+      "improvements": [
+        "Redesigned all Cedula pages with a more formal, government-inspired, clean and elegant layout for improved usability for both taxpayers and treasury users",
+        "Added skeleton loader when loading transaction counts per process to improve user experience and provide clear loading feedback during data fetching"
+      ],
+      "fixes": []
     },
     {
       "id": "c1",
@@ -35,29 +39,27 @@
       "datetime": "2026-04-05 2:30 PM",
       "latest": false,
       "title": "Initial Release of Revised Cedula System",
-"newFeatures": [
-  "Added Individual and Corporation Cedula form UI redesigned to mimic the physical cedula form for better familiarity and easier user understanding",
-  "Added validation in Individual Cedula form input including birthdate restriction (minimum age 15 years old)"
-],
-
-"improvements": [
-  "Added additional input fields (IncomeFromRealPropertyComputed, SalariesOrGrossComputed, and GrossReceiptsComputed) and corresponding database fields in the existing Cedula form based on the official physical cedula format",
-  "Added validation trapping for Cedula form fields, including red danger indicators for empty or invalid inputs to emphasize required corrections",
-  "Improved Cedula issuance form layout for better usability and clarity",
-  "Improved tax computation and payment calculation process for accuracy",
-  "Improved treasury transaction management layout to match the taxpayer-side form design for consistency",
-  "Improved transaction filtering and search functionality for better record handling and navigation"
-],
-
-"fixes": [
-  "Fixed tax computation and payment calculation issues",
-  "Fixed payment redirection issue to Universal Checkout",
-  "Fixed transaction count glitch that changes over time",
-  "Fixed rendering issue where pending and successful transactions were not properly separated",
-  "Fixed edit, approve, and reject functionality in treasury module",
-  "Fixed remarks handling so it only appears under approved or rejected transactions",
-  "Fixed filtering and search inconsistencies in treasury transactions"
-]
+      "newFeatures": [
+        "Added Individual and Corporation Cedula form UI redesigned to mimic the physical cedula form for better familiarity and easier user understanding",
+        "Added validation in Individual Cedula form input including birthdate restriction (minimum age 15 years old)"
+      ],
+      "improvements": [
+        "Added additional input fields (IncomeFromRealPropertyComputed, SalariesOrGrossComputed, and GrossReceiptsComputed) and corresponding database fields in the existing Cedula form based on the official physical cedula format",
+        "Added validation trapping for Cedula form fields, including red danger indicators for empty or invalid inputs to emphasize required corrections",
+        "Improved Cedula issuance form layout for better usability and clarity",
+        "Improved tax computation and payment calculation process for accuracy",
+        "Improved treasury transaction management layout to match the taxpayer-side form design for consistency",
+        "Improved transaction filtering and search functionality for better record handling and navigation"
+      ],
+      "fixes": [
+        "Fixed tax computation and payment calculation issues",
+        "Fixed payment redirection issue to Universal Checkout",
+        "Fixed transaction count glitch that changes over time",
+        "Fixed rendering issue where pending and successful transactions were not properly separated",
+        "Fixed edit, approve, and reject functionality in treasury module",
+        "Fixed remarks handling so it only appears under approved or rejected transactions",
+        "Fixed filtering and search inconsistencies in treasury transactions"
+      ]
     }
   ]
 }
