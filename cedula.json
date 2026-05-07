@@ -28,7 +28,6 @@
     "Added skeleton loader when loading transaction counts per process to improve user experience and provide clear loading feedback during data fetching"
   ],
   "fixes": []
-}
     },
     {
       "id": "c1",
