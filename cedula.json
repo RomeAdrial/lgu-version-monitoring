@@ -1,0 +1,23 @@
+{
+  "system": "Cedula System",
+  "versions": [
+    {
+      "id": "c1",
+      "version": "2.0.0",
+      "datetime": "2026-05-05 2:30 PM",
+      "latest": false,
+      "title": "Cedula Module: Initial Setup, UI Enhancements, and Minor Fixes",
+      "newFeatures": ["Cedula module created"],
+      "improvements": ["Form validation improved"]
+    },
+    {
+      "id": "c2",
+      "version": "2.1.0",
+      "latest": true,
+      "title": "Cedula Module: Initial Setup, UI Enhancements, and Minor Fixes",
+       "datetime": "2026-05-05 2:30 PM",
+      "newFeatures": ["QR verification added"],
+      "fixes": ["Fixed PDF bug"]
+    }
+  ]
+}
