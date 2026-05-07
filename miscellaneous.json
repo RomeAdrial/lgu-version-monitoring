@@ -6,7 +6,7 @@
       "version": "1.3.0",
       "datetime": "2026-04-05 2:30 PM",
       "latest": true,
-      "title": "Digital Miscellaneous Issuance sdf",
+      "title": "Digital Miscellaneous Issuance",
       "newFeatures": ["Added Digital Cedula in the issuance process"],
       "improvements": ["Improved issuance process by supporting Digital Cedula for faster and more convenient transactions"],
       "fixes": []
@@ -16,7 +16,7 @@
       "version": "1.2.0",
       "datetime": "2026-04-05 2:30 PM",
       "latest": false,
-      "title": "UI Enhancements and Multi-Account Code Support sdf",
+      "title": "UI Enhancements and Multi-Account Code Support",
       "newFeatures": [],
       "improvements": ["Updated the UI design with a more formal look and simpler, less colorful layout","Improved system to properly process multiple account codes when needed"],
       "fixes": ["Fixed query to handle multiple account codes instead of only one"]
@@ -26,7 +26,7 @@
       "version": "1.0.0",
       "datetime": "2026-03-15 9:00 AM",
       "latest": false,
-      "title": "Initial Release of Miscellaneous System sdf",
+      "title": "Initial Release of Miscellaneous System",
       "newFeatures": ["Implemented the Miscellaneous System inside the WSP platform, accessible after user login","Added a dedicated Miscellaneous page for taxpayers","Introduced selectable miscellaneous certificates/services for payment","Added service descriptions and automatic total amount computation","Enabled users to proceed directly to payment from the Miscellaneous module","Integrated SPIDC Universal Checkout payment system","Enabled automatic generation of receipt / EOR (Electronic Official Receipt) after successful payment"],
       "improvements": ["Streamlined navigation from WSP system to Miscellaneous module for faster access","Improved user payment flow with a direct checkout process (reduced steps)","Enhanced clarity of service selection through structured descriptions and pricing display","Improved system integration between Miscellaneous module and SPIDC payment gateway"],
       "fixes": []
