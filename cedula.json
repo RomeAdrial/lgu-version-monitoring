@@ -5,7 +5,7 @@
       "id": "c3",
       "version": "2.3.0",
       "datetime": "2026-04-05 2:30 PM",
-      "latest": false,
+      "latest": true,
       "title": "UI Enhancements and Multi-Account Code Support",
       "newFeatures": [],
       "improvements": ["Updated the UI design with a more formal look and simpler, less colorful layout","Improved system to properly process multiple account codes when needed"],
@@ -25,14 +25,16 @@
       "id": "c1",
       "version": "2.0.0",
       "datetime": "2026-04-05 2:30 PM",
-      "latest": true,
+      "latest": false,
       "title": "Initial Release of Revised Cedula System",
 "newFeatures": [
-  "Added Cedula form UI redesigned to mimic the physical cedula form for better familiarity and easier user understanding",
-  "Added validation for taxpayer input including birthdate restriction (minimum age 15 years old)"
+  "Added Individual and Corporation Cedula form UI redesigned to mimic the physical cedula form for better familiarity and easier user understanding",
+  "Added validation in Individual Cedula form input including birthdate restriction (minimum age 15 years old)"
 ],
 
 "improvements": [
+  "Added additional input fields (IncomeFromRealPropertyComputed, SalariesOrGrossComputed, and GrossReceiptsComputed) and corresponding database fields in the existing Cedula form based on the official physical cedula format",
+  "Added validation trapping for Cedula form fields, including red danger indicators for empty or invalid inputs to emphasize required corrections",
   "Improved Cedula issuance form layout for better usability and clarity",
   "Improved tax computation and payment calculation process for accuracy",
   "Improved treasury transaction management layout to match the taxpayer-side form design for consistency",
