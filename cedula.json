@@ -6,12 +6,15 @@
       "version": "2.2.0",
       "datetime": "2026-04-05 2:30 PM",
       "latest": true,
-      "title": "UI Enhancements and Multi-Account Code Support",
-      "newFeatures": [],
+      "title": "Cedula System Timestamp Tracking and DOC_TRACK Audit Trail Enhancement",
+      "newFeatures": [   "Added timestamp tracking feature in the Cedula System for monitoring transaction processing flow",
+    "Created dynamic yearly DOC_TRACK tables in the Timestamp Database for organized transaction logging and historical record management",
+    "Added transaction audit fields including Counter, ForYear, Acctno, Name, Address, ProcessTime, xTransaction, NextStep, Remarks, Remarks1, LoginName, FullName, ProcessTime_Begin, isWEB, Application_No, and xGroup"
+ ],
       "improvements": [
-        "Updated the UI design with a more formal look and simpler, less colorful layout",
-        "Improved system to properly process multiple account codes when needed"
-      ],
+       "Enhanced transaction monitoring by storing detailed processing information including account details, processing time, transaction type, workflow steps, remarks, application number, and personnel information",
+    "Improved audit trail and process transparency for both web and office-based Cedula transactions"
+   ],
       "fixes": [
         "Fixed query to handle multiple account codes instead of only one"
       ]
