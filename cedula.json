@@ -3,7 +3,7 @@
   "versions": [
     {
       "id": "c1",
-      "version": "1.3.0",
+      "version": "2.0.0",
       "datetime": "2026-04-05 2:30 PM",
       "latest": true,
       "title": "Initial Release of Revised Cedula System",
@@ -30,8 +30,8 @@
 ]
     },
     {
-      "id": "m2",
-      "version": "1.2.0",
+      "id": "c2",
+      "version": "2.2.0",
       "datetime": "2026-04-05 2:30 PM",
       "latest": false,
       "title": "UI Enhancements and Multi-Account Code Support",
@@ -40,8 +40,8 @@
       "fixes": ["Fixed query to handle multiple account codes instead of only one"]
     },
     {
-      "id": "m1",
-      "version": "1.0.0",
+      "id": "c3",
+      "version": "2.3.0",
       "datetime": "2026-03-15 9:00 AM",
       "latest": false,
       "title": "Initial Release of Miscellaneous System",
