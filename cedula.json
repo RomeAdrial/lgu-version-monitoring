@@ -44,7 +44,7 @@
         "Added validation in Individual Cedula form input including birthdate restriction (minimum age 15 years old)"
       ],
       "improvements": [
-        "Added additional input fields (IncomeFromRealPropertyComputed, SalariesOrGrossComputed, and GrossReceiptsComputed) and corresponding database fields in CTC_Online_Application table in the existing Cedula form based on the official physical cedula format",
+        "Added additional input fields (`IncomeFromRealPropertyComputed`, `SalariesOrGrossComputed`, and `GrossReceiptsComputed`) and their corresponding database fields in the `CTC_Online_Application` table within the `SOS_TIMS` database for the existing Cedula form, based on the official physical Cedula format",
         "Added validation trapping for Cedula form fields, including red danger indicators for empty or invalid inputs to emphasize required corrections",
         "Improved Cedula issuance form layout for better usability and clarity",
         "Improved tax computation and payment calculation process for accuracy",
