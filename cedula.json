@@ -11,8 +11,8 @@
         {
           "text": "Added a version monitoring system so users can see the latest updates for each system",
           "attachment": {
-            "type": "image",
-            "file": ""
+            "type": "pdf",
+            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
           }
         },
         {
