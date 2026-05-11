@@ -1,11 +1,27 @@
 {
   "system": "Cedula Web System",
   "versions": [
+     {
+      "id": "c4",
+      "version": "2.3.0",
+      "datetime": "2026-05-04 2:30 PM",
+      "latest": true,
+      "title": "Track System Updates and Versions",
+      "newFeatures":  [ "Added a version monitoring system so users can see the latest updates for each system",
+                        "Users can now view update history including old versions"
+      ],
+      "improvements": [
+                        "Made it easier for users to see what changes were made in each update",
+                        "Improved tracking of system updates so users can understand changes over time"
+      ],
+      "fixes": [],
+      "Url": "https://online.spidc.com.ph/webportal/Register.aspx"
+    },
     {
       "id": "c3",
       "version": "2.2.0",
       "datetime": "2026-04-05 2:30 PM",
-      "latest": true,
+      "latest": false,
       "title": "Cedula System Timestamp Tracking and DOC_TRACK Audit Trail Enhancement",
       "newFeatures": [   "Added timestamp tracking feature in the Cedula System for monitoring transaction processing flow",
     "Created dynamic yearly DOC_TRACK tables in the Timestamp Database for organized transaction logging and historical record management",
