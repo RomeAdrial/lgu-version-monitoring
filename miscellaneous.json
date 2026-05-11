@@ -6,7 +6,7 @@
   "version": "1.3.0",
   "datetime": "2026-05-04 11:30 AM",
   "latest": true,
-  "title": "Digital Miscellaneous Issuance and Timestamp Database Integration",
+  "title": "Digital Miscellaneous Issuance and Timestamp Monitoring",
   "newFeatures": [
     "Added Digital Cedula in the issuance process",
     "Added timestamp tracking feature for monitoring transaction processing flow",
