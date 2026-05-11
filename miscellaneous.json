@@ -7,13 +7,19 @@
       "datetime": "2026-05-04 2:30 PM",
       "latest": true,
       "title": "Track System Updates and Versions",
-      "newFeatures":  [ "Added a version monitoring system so users can see the latest updates for each system",
-                        "Users can now view update history including old versions"
-      ],
-      "improvements": [
-                        "Made it easier for users to see what changes were made in each update",
-                        "Improved tracking of system updates so users can understand changes over time"
-      ],
+     {
+  "newFeatures": [
+    "Added a version monitoring system so users can see the latest updates for each system",
+    "Users can now view update history including old versions",
+    "Centralized the version monitoring data using GitHub so all LGU systems use one shared JSON file instead of separate copies"
+  ],
+  "improvements": [
+    "Made it easier for users to see what changes were made in each update",
+    "Improved tracking of system updates so users can understand changes over time",
+    "Improved maintainability by using a single centralized JSON source, so updates automatically reflect across all LGU systems"
+  ],
+  "fixes": []
+}
       "fixes": [],
       "Url": "https://online.spidc.com.ph/webportal/Register.aspx"
     },
