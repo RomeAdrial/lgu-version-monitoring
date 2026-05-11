@@ -1,19 +1,21 @@
 {
   "system": "Miscellaneous System",
   "versions": [
-    {
+ {
   "id": "m3",
   "version": "1.3.0",
   "datetime": "2026-05-04 11:30 AM",
   "latest": true,
-  "title": "Digital Miscellaneous Issuance and Timestamp Monitoring",
+  "title": "Digital Miscellaneous Issuance and Timestamp Database Integration",
   "newFeatures": [
     "Added Digital Cedula in the issuance process",
-    "Added timestamp tracking feature for monitoring transaction processing flow"
+    "Added timestamp tracking feature for monitoring transaction processing flow",
+    "Created dynamic yearly DOC_TRACK[CurrentYear] tables in the Timestamp Database for organized transaction logging"
   ],
   "improvements": [
     "Improved issuance process by supporting Digital Cedula for faster and more convenient transactions",
-    "Enhanced transaction monitoring by recording processing timestamps and workflow activities"
+    "Enhanced transaction monitoring by recording processing timestamps and workflow activities",
+    "Improved audit trail management by storing all timestamp transaction data in dedicated yearly DOC_TRACK tables"
   ],
   "fixes": []
 },
