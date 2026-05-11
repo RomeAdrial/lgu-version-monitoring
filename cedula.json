@@ -4,7 +4,7 @@
      {
       "id": "c4",
       "version": "2.3.0",
-      "datetime": "2026-05-04 2:30 PM",
+      "datetime": "2026-05-04T14:30:00",
       "latest": true,
       "title": "Track System Updates and Versions",
   "newFeatures": [
@@ -23,7 +23,7 @@
     {
       "id": "c3",
       "version": "2.2.0",
-      "datetime": "2026-04-05 2:30 PM",
+      "datetime": "2026-04-05T14:30:00",
       "latest": false,
       "title": "Cedula System Timestamp Tracking and DOC_TRACK Audit Trail Enhancement",
       "newFeatures": [   "Added timestamp tracking feature in the Cedula System for monitoring transaction processing flow",
@@ -42,7 +42,7 @@
     {
       "id": "c2",
       "version": "2.1.0",
-      "datetime": "2026-03-15 9:00 AM",
+      "datetime": "2026-03-15T9:30:00",
       "latest": false,
       "title": "Comprehensive Update: Government-Inspired UI Revamp, Digital Cedula Release, Email Notifications, and Automated LGU Employee Processing",
       "newFeatures": [
@@ -60,7 +60,7 @@
     {
       "id": "c1",
       "version": "2.0.0",
-      "datetime": "2026-04-05 2:30 PM",
+      "datetime": "2026-02-27T14:30:00",
       "latest": false,
       "title": "Initial Release of Revised Cedula System",
       "newFeatures": [
