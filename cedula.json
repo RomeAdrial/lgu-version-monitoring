@@ -10,47 +10,63 @@
       "newFeatures": [
         {
           "text": "Added a version monitoring system so users can see the latest updates for each system",
-          "attachment": {
-          "type": "pdf",
-          "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/generated.pdf"
-          }
+          "attachments": [
+            {
+              "type": "pdf",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/generated.pdf"
+            },
+            {
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+            }
+          ]
         },
         {
           "text": "Users can now view update history including old versions",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
+          "attachments": [
+            {
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+            }
+          ]
         },
         {
           "text": "Centralized the version monitoring data using GitHub so all LGU systems use one shared JSON file instead of separate copies",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
+          "attachments": [
+            {
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+            }
+          ]
         }
       ],
       "improvements": [
         {
           "text": "Made it easier for users to see what changes were made in each update",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
+          "attachments": [
+            {
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+            }
+          ]
         },
         {
           "text": "Improved tracking of system updates so users can understand changes over time",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
+          "attachments": [
+            {
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+            }
+          ]
         },
         {
-          "text": "Improved maintainability by using a single centralized JSON source, so updates automatically reflect across all LGU systems",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
+          "text": "Improved maintainability by using a single centralized JSON source",
+          "attachments": [
+            {
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+            }
+          ]
         }
       ],
       "fixes": [],
@@ -65,50 +81,53 @@
       "title": "Cedula System Timestamp Tracking and DOC_TRACK Audit Trail Enhancement",
       "newFeatures": [
         {
-          "text": "Added timestamp tracking feature in the Cedula System for monitoring transaction processing flow",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
+          "text": "Added timestamp tracking feature in the Cedula System",
+          "attachments": [
+            {
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+            }
+          ]
         },
         {
-          "text": "Created dynamic yearly DOC_TRACK tables in the Timestamp Database for organized transaction logging and historical record management",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
+          "text": "Created dynamic yearly DOC_TRACK tables in the Timestamp Database",
+          "attachments": [
+            {
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+            }
+          ]
         },
         {
-          "text": "Added transaction audit fields including Counter, ForYear, Acctno, Name, Address, ProcessTime, xTransaction, NextStep, Remarks, Remarks1, LoginName, FullName, ProcessTime_Begin, isWEB, Application_No, and xGroup",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
+          "text": "Added transaction audit fields for full tracking",
+          "attachments": [
+            {
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+            }
+          ]
         }
       ],
       "improvements": [
         {
-          "text": "Enhanced transaction monitoring by storing detailed processing information including account details, processing time, transaction type, workflow steps, remarks, application number, and personnel information",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
-        },
-        {
-          "text": "Improved audit trail and process transparency for both web and office-based Cedula transactions",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
+          "text": "Enhanced transaction monitoring with detailed processing info",
+          "attachments": [
+            {
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+            }
+          ]
         }
       ],
       "fixes": [
         {
           "text": "Fixed query to handle multiple account codes instead of only one",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
+          "attachments": [
+            {
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+            }
+          ]
         }
       ],
       "Url": "https://online.spidc.com.ph/webportal/Register.aspx"
@@ -119,46 +138,41 @@
       "version": "2.1.0",
       "datetime": "2026-03-15T09:30:00",
       "latest": false,
-      "title": "Comprehensive Update: Government-Inspired UI Revamp, Digital Cedula Release, Email Notifications, and Automated LGU Employee Processing",
+      "title": "Comprehensive Update: Government UI Revamp, Digital Cedula, Email Notifications",
+
       "newFeatures": [
         {
-          "text": "Added email notification system for successful payments with instructions for taxpayers to visit LGU for physical Cedula claiming",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
+          "text": "Added email notification system for successful payments",
+          "attachments": [
+            {
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+            }
+          ]
         },
         {
-          "text": "Added Digital Cedula issuance that automatically generates and releases a digital copy after successful payment",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
-        },
-        {
-          "text": "Added LGU employee toggle feature with employee number verification modal, enabling automatic retrieval of employee information and auto-filling of Cedula form including automatic tax computation",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
+          "text": "Added Digital Cedula issuance after payment",
+          "attachments": [
+            {
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+            }
+          ]
         }
       ],
+
       "improvements": [
         {
-          "text": "Redesigned all Cedula pages with a more formal, government-inspired, clean and elegant layout for improved usability for both taxpayers and treasury users",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
-        },
-        {
-          "text": "Added skeleton loader when loading transaction counts per process to improve user experience and provide clear loading feedback during data fetching",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
+          "text": "Redesigned Cedula pages with government-inspired UI",
+          "attachments": [
+            {
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+            }
+          ]
         }
       ],
+
       "fixes": [],
       "Url": "https://online.spidc.com.ph/webportal/Register.aspx"
     },
@@ -169,117 +183,43 @@
       "datetime": "2026-02-27T14:30:00",
       "latest": false,
       "title": "Initial Release of Revised Cedula System",
+
       "newFeatures": [
         {
-          "text": "Added Individual and Corporation Cedula form UI redesigned to mimic the physical cedula form for better familiarity and easier user understanding",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
-        },
-        {
-          "text": "Added validation in Individual Cedula form input including birthdate restriction (minimum age 15 years old)",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
+          "text": "Added Cedula form UI redesign",
+          "attachments": [
+            {
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+            }
+          ]
         }
       ],
+
       "improvements": [
         {
-          "text": "Added additional input fields (`IncomeFromRealPropertyComputed`, `SalariesOrGrossComputed`, and `GrossReceiptsComputed`) and their corresponding database fields in the `CTC_Online_Application` table within the `SOS_TIMS` database for the existing Cedula form, based on the official physical Cedula format",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
-        },
-        {
-          "text": "Added validation trapping for Cedula form fields, including red danger indicators for empty or invalid inputs to emphasize required corrections",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
-        },
-        {
-          "text": "Improved Cedula issuance form layout for better usability and clarity",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
-        },
-        {
-          "text": "Improved tax computation and payment calculation process for accuracy",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
-        },
-        {
-          "text": "Improved treasury transaction management layout to match the taxpayer-side form design for consistency",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
-        },
-        {
-          "text": "Improved transaction filtering and search functionality for better record handling and navigation",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
+          "text": "Improved Cedula computation and layout",
+          "attachments": [
+            {
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+            }
+          ]
         }
       ],
+
       "fixes": [
         {
-          "text": "Fixed tax computation and payment calculation issues",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
-        },
-        {
-          "text": "Fixed payment redirection issue to Universal Checkout",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
-        },
-        {
-          "text": "Fixed transaction count glitch that changes over time",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
-        },
-        {
-          "text": "Fixed rendering issue where pending and successful transactions were not properly separated",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
-        },
-        {
-          "text": "Fixed edit, approve, and reject functionality in treasury module",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
-        },
-        {
-          "text": "Fixed remarks handling so it only appears under approved or rejected transactions",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
-        },
-        {
-          "text": "Fixed filtering and search inconsistencies in treasury transactions",
-          "attachment": {
-            "type": "image",
-            "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
-          }
+          "text": "Fixed tax computation issues",
+          "attachments": [
+            {
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+            }
+          ]
         }
       ],
+
       "Url": "https://online.spidc.com.ph/webportal/Register.aspx"
     }
   ]
