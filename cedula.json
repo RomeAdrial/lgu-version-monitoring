@@ -17,7 +17,8 @@
    ],
       "fixes": [
         "Fixed query to handle multiple account codes instead of only one"
-      ]
+      ],
+         "Url": "https://online.spidc.com.ph/webportal/Register.aspx"
     },
     {
       "id": "c2",
@@ -34,7 +35,8 @@
         "Redesigned all Cedula pages with a more formal, government-inspired, clean and elegant layout for improved usability for both taxpayers and treasury users",
         "Added skeleton loader when loading transaction counts per process to improve user experience and provide clear loading feedback during data fetching"
       ],
-      "fixes": []
+      "fixes": [],
+      "Url": "https://online.spidc.com.ph/webportal/Register.aspx"
     },
     {
       "id": "c1",
@@ -62,7 +64,8 @@
         "Fixed edit, approve, and reject functionality in treasury module",
         "Fixed remarks handling so it only appears under approved or rejected transactions",
         "Fixed filtering and search inconsistencies in treasury transactions"
-      ]
+      ],
+      "Url": "https://online.spidc.com.ph/webportal/Register.aspx"
     }
   ]
 }
