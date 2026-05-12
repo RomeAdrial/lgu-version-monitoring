@@ -18,6 +18,14 @@
             {
               "type": "image",
               "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+            },
+             {
+              "type": "pdf",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/DAR_R.A.Dizon_2026-05-11.pdf"
+            },
+              {
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
             }
           ]
         },
