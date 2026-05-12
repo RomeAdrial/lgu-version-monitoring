@@ -17,8 +17,7 @@
     "Improved tracking of system updates so users can understand changes over time",
     "Improved maintainability by using a single centralized JSON source, so updates automatically reflect across all LGU systems"
   ],
-      "fixes": [],
-      "Url": "https://online.spidc.com.ph/webportal/Register.aspx"
+      "fixes": []
     },
  {
   "id": "m3",
@@ -36,8 +35,7 @@
     "Enhanced transaction monitoring by recording processing timestamps and workflow activities",
     "Improved audit trail management by storing all timestamp transaction data in dedicated yearly DOC_TRACK tables"
   ],
-  "fixes": [],
-   "Url": "https://online.spidc.com.ph/webportal/Register.aspx"
+  "fixes": []
 },
     {
       "id": "m2",
@@ -47,8 +45,7 @@
       "title": "UI Enhancements and Multi-Account Code Support",
       "newFeatures": [],
       "improvements": ["Updated the UI design with a more formal look and simpler, less colorful layout","Improved system to properly process multiple account codes when needed"],
-      "fixes": ["Fixed query to handle multiple account codes instead of only one"],
-      "Url": "https://online.spidc.com.ph/webportal/Register.aspx"
+      "fixes": ["Fixed query to handle multiple account codes instead of only one"]
     },
     {
       "id": "m1",
@@ -58,8 +55,7 @@
       "title": "Initial Release of Miscellaneous System",
       "newFeatures": ["Implemented the Miscellaneous System inside the WSP platform, accessible after user login","Added a dedicated Miscellaneous page for taxpayers","Introduced selectable miscellaneous certificates/services for payment","Added service descriptions and automatic total amount computation","Enabled users to proceed directly to payment from the Miscellaneous module","Integrated SPIDC Universal Checkout payment system","Enabled automatic generation of receipt / EOR (Electronic Official Receipt) after successful payment"],
       "improvements": ["Streamlined navigation from WSP system to Miscellaneous module for faster access","Improved user payment flow with a direct checkout process (reduced steps)","Enhanced clarity of service selection through structured descriptions and pricing display","Improved system integration between Miscellaneous module and SPIDC payment gateway"],
-      "fixes": [],
-      "Url": "https://online.spidc.com.ph/webportal/Register.aspx"
+      "fixes": []
     }
   ]
 }
