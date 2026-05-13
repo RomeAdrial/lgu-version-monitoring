@@ -13,7 +13,7 @@
           "attachments": [
             {
               "type": "image",
-              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedula-web-app/file-attachment-v2.0.0/version-all-systems.jpg"
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedula-web-app/file-attachment-v2.3.0/version-all-systems.jpg"
             }
           ]
         },
@@ -157,8 +157,12 @@
           "text": "Added Digital Cedula issuance that automatically generates and releases a digital copy after successful payment",
           "attachments": [
             {
-              "type": "",
-              "file": ""
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedula-web-app/file-attachment-v2.1.0/cedula-img-digital.jpg"
+            },
+              {
+              "type": "pdf",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedula-web-app/file-attachment-v2.1.0/digital-sample.pdf"
             }
           ]
         },
