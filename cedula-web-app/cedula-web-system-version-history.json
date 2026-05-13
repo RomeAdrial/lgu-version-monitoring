@@ -222,7 +222,11 @@
           "attachments": [
             {
               "type": "image",
-              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedula-web-app/file-attachment-v2.0.0/cedula-img-taxpayer-individual.jpg"
+            },
+              {
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedula-web-app/file-attachment-v2.0.0/cedula-img-taxpayer-corporation.jpg"
             }
           ]
         },
@@ -230,8 +234,8 @@
           "text": "Added validation in Individual Cedula form input including birthdate restriction (minimum age 15 years old)",
           "attachments": [
             {
-              "type": "image",
-              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+              "type": "",
+              "file": ""
             }
           ]
         }
@@ -242,8 +246,8 @@
           "text": "Added additional input fields (`IncomeFromRealPropertyComputed`, `SalariesOrGrossComputed`, and `GrossReceiptsComputed`) and their corresponding database fields in the `CTC_Online_Application` table within the `SOS_TIMS` database for the existing Cedula form, based on the official physical Cedula format",
           "attachments": [
             {
-              "type": "image",
-              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+              "type": "",
+              "file": ""
             }
           ]
         },
@@ -251,8 +255,8 @@
           "text": "Added validation trapping for Cedula form fields, including red danger indicators for empty or invalid inputs to emphasize required corrections",
           "attachments": [
             {
-              "type": "image",
-              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+              "type": "",
+              "file": ""
             }
           ]
         },
@@ -260,8 +264,8 @@
           "text": "Improved Cedula issuance form layout for better usability and clarity",
           "attachments": [
             {
-              "type": "image",
-              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+              "type": "",
+              "file": ""
             }
           ]
         },
@@ -269,8 +273,8 @@
           "text": "Improved tax computation and payment calculation process for accuracy",
           "attachments": [
             {
-              "type": "image",
-              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+              "type": "",
+              "file": ""
             }
           ]
         },
@@ -278,8 +282,8 @@
           "text": "Improved treasury transaction management layout to match the taxpayer-side form design for consistency",
           "attachments": [
             {
-              "type": "image",
-              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+              "type": "",
+              "file": ""
             }
           ]
         },
@@ -287,8 +291,8 @@
           "text": "Improved transaction filtering and search functionality for better record handling and navigation",
           "attachments": [
             {
-              "type": "image",
-              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+              "type": "",
+              "file": ""
             }
           ]
         }
@@ -299,8 +303,8 @@
           "text": "Fixed tax computation and payment calculation issues",
           "attachments": [
             {
-              "type": "image",
-              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+              "type": "",
+              "file": ""
             }
           ]
         },
@@ -308,8 +312,8 @@
           "text": "Fixed payment redirection issue to Universal Checkout",
           "attachments": [
             {
-              "type": "image",
-              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+              "type": "",
+              "file": ""
             }
           ]
         },
@@ -317,8 +321,8 @@
           "text": "Fixed transaction count glitch that changes over time",
           "attachments": [
             {
-              "type": "image",
-              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+              "type": "",
+              "file": ""
             }
           ]
         },
@@ -326,8 +330,8 @@
           "text": "Fixed rendering issue where pending and successful transactions were not properly separated",
           "attachments": [
             {
-              "type": "image",
-              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+              "type": "",
+              "file": ""
             }
           ]
         },
@@ -335,8 +339,8 @@
           "text": "Fixed edit, approve, and reject functionality in treasury module",
           "attachments": [
             {
-              "type": "image",
-              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+              "type": "",
+              "file": ""
             }
           ]
         },
@@ -344,8 +348,8 @@
           "text": "Fixed remarks handling so it only appears under approved or rejected transactions",
           "attachments": [
             {
-              "type": "image",
-              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+              "type": "",
+              "file": ""
             }
           ]
         },
@@ -353,8 +357,8 @@
           "text": "Fixed filtering and search inconsistencies in treasury transactions",
           "attachments": [
             {
-              "type": "image",
-              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedulaImages/payment-security.png"
+              "type": "",
+              "file": ""
             }
           ]
         }
