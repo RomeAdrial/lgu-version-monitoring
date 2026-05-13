@@ -37,10 +37,34 @@
         }
       ],
   "improvements": [
-    "Made it easier for users to see what changes were made in each update",
-    "Improved tracking of system updates so users can understand changes over time",
-    "Improved maintainability by using a single centralized JSON source, so updates automatically reflect across all LGU systems"
-  ],
+        {
+          "text": "Made it easier for users to see what changes were made in each update",
+          "attachments": [
+            {
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedula-web-app/file-attachment-v2.3.0/version-all-systems.jpg"
+            }
+          ]
+        },
+        {
+          "text": "Improved tracking of system updates so users can understand changes over time",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
+          "text": "Improved maintainability by using a single centralized JSON source, so updates automatically reflect across all LGU systems",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        }
+      ],
       "fixes": []
     },
  {
@@ -50,15 +74,65 @@
   "latest": false,
   "title": "Digital Miscellaneous Issuance and Timestamp Monitoring",
   "newFeatures": [
-    "Added Digital Cedula in the issuance process",
-    "Added timestamp tracking feature for monitoring transaction processing flow",
-    "Created dynamic yearly DOC_TRACK[CurrentYear] tables in the Timestamp Database for organized transaction logging"
-  ],
-  "improvements": [
-    "Improved issuance process by supporting Digital Cedula for faster and more convenient transactions",
-    "Enhanced transaction monitoring by recording processing timestamps and workflow activities",
-    "Improved audit trail management by storing all timestamp transaction data in dedicated yearly DOC_TRACK tables"
-  ],
+        {
+          "text": "Added Digital Cedula in the issuance process",
+          "attachments": [
+            {
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedula-web-app/file-attachment-v2.3.0/version-all-systems.jpg"
+            }
+          ]
+        },
+        {
+          "text": "Added timestamp tracking feature for monitoring transaction processing flow",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
+          "text": "Created dynamic yearly DOC_TRACK[CurrentYear] tables in the Timestamp Database for organized transaction logging",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        }
+      ],
+
+  "improvements":[
+        {
+          "text": "Improved issuance process by supporting Digital Cedula for faster and more convenient transactions",
+          "attachments": [
+            {
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedula-web-app/file-attachment-v2.3.0/version-all-systems.jpg"
+            }
+          ]
+        },
+        {
+          "text": "Enhanced transaction monitoring by recording processing timestamps and workflow activities",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
+          "text": "Improved audit trail management by storing all timestamp transaction data in dedicated yearly DOC_TRACK tables",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        }
+      ],
+   
   "fixes": []
 },
     {
@@ -68,7 +142,26 @@
       "latest": false,
       "title": "UI Enhancements and Multi-Account Code Support",
       "newFeatures": [],
-      "improvements": ["Updated the UI design with a more formal look and simpler, less colorful layout","Improved system to properly process multiple account codes when needed"],
+      "improvements": [
+        {
+          "text": "Updated the UI design with a more formal look and simpler, less colorful layout",
+          "attachments": [
+            {
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedula-web-app/file-attachment-v2.3.0/version-all-systems.jpg"
+            }
+          ]
+        },
+        {
+          "text": "Improved system to properly process multiple account codes when needed",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        }
+      ],
       "fixes": ["Fixed query to handle multiple account codes instead of only one"]
     },
     {
@@ -77,8 +170,110 @@
       "datetime": "2026-03-15T14:30:00",
       "latest": false,
       "title": "Initial Release of Miscellaneous System",
-      "newFeatures": ["Implemented the Miscellaneous System inside the WSP platform, accessible after user login","Added a dedicated Miscellaneous page for taxpayers","Introduced selectable miscellaneous certificates/services for payment","Added service descriptions and automatic total amount computation","Enabled users to proceed directly to payment from the Miscellaneous module","Integrated SPIDC Universal Checkout payment system","Enabled automatic generation of receipt / EOR (Electronic Official Receipt) after successful payment"],
-      "improvements": ["Streamlined navigation from WSP system to Miscellaneous module for faster access","Improved user payment flow with a direct checkout process (reduced steps)","Enhanced clarity of service selection through structured descriptions and pricing display","Improved system integration between Miscellaneous module and SPIDC payment gateway"],
+      "newFeatures": [
+        {
+          "text": "Implemented the Miscellaneous System inside the WSP platform",
+          "attachments": [
+            {
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedula-web-app/file-attachment-v2.3.0/version-all-systems.jpg"
+            }
+          ]
+        },
+        {
+          "text": "Added a dedicated Miscellaneous page for taxpayers",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
+          "text": "Introduced selectable miscellaneous certificates/services for payment",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+            {
+          "text": "Added service descriptions and automatic total amount computation",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+            {
+          "text": "Enabled users to proceed directly to payment from the Miscellaneous module",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+            {
+          "text": "Integrated SPIDC Universal Checkout payment system",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+            {
+          "text": "Enabled automatic generation of receipt / EOR (Electronic Official Receipt) after successful payment",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        }
+      ],
+  
+      "improvements": [
+        {
+          "text": "Streamlined navigation from WSP system to Miscellaneous module for faster access",
+          "attachments": [
+            {
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedula-web-app/file-attachment-v2.3.0/version-all-systems.jpg"
+            }
+          ]
+        },
+        {
+          "text": "Improved user payment flow with a direct checkout process (reduced steps)",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
+          "text": "Enhanced clarity of service selection through structured descriptions and pricing display",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+         {
+          "text": "Improved system integration between Miscellaneous module and SPIDC payment gateway",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        }
+      ]
       "fixes": []
     }
   ]
