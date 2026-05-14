@@ -22,7 +22,7 @@
           "attachments": [
             {
               "type": "image",
-              "file": ""
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/ppap-web-app/file-attachment-v2.0.0/ppap-report-preview.jpg"
             }
           ]
         },
@@ -31,7 +31,11 @@
           "attachments": [
             {
               "type": "image",
-              "file": ""
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/ppap-web-app/file-attachment-v2.0.0/ppap-report-01.jpg"
+            },
+              {
+              "type": "pdf",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/ppap-web-app/file-attachment-v2.0.0/ppap-report-02.pdf"
             }
           ]
         },
