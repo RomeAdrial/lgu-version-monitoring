@@ -54,8 +54,16 @@
           "text": "Redesigned and improved UI layout to be more user-friendly and cleaner compared to the previous messy interface",
           "attachments": [
             {
-              "type": "",
-              "file": ""
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/ppap-web-app/file-attachment-v2.0.0/ppap-ui-01.jpg"
+            },
+             {
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/ppap-web-app/file-attachment-v2.0.0/ppap-ui-02.jpg"
+            },
+             {
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/ppap-web-app/file-attachment-v2.0.0/ppap-ui-03.jpg"
             }
           ]
         },
