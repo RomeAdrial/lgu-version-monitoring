@@ -148,7 +148,7 @@
           "attachments": [
             {
               "type": "image",
-              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/miscellaneous-web-app/file-attachment-v1.4.0/version-all-systems.jpg"
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/miscellaneous-web-app/file-attachment-v1.4.0/miscellaneous-ui.jpg"
             }
           ]
         },
@@ -175,8 +175,8 @@
           "text": "Implemented the Miscellaneous System inside the WSP platform",
           "attachments": [
             {
-              "type": "image",
-              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/miscellaneous-web-app/file-attachment-v1.4.0/version-all-systems.jpg"
+              "type": "",
+              "file": ""
             }
           ]
         },
@@ -241,8 +241,8 @@
           "text": "Streamlined navigation from WSP system to Miscellaneous module for faster access",
           "attachments": [
             {
-              "type": "image",
-              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/miscellaneous-web-app/file-attachment-v1.4.0/version-all-systems.jpg"
+              "type": "",
+              "file": ""
             }
           ]
         },
