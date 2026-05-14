@@ -226,8 +226,12 @@
           "text": "Added validation in Individual Cedula form input including birthdate restriction (minimum age 15 years old)",
           "attachments": [
             {
-              "type": "",
-              "file": ""
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedula-web-app/file-attachment-v2.0.0/birthdate-trapping-01.jpg"
+            },
+             {
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedula-web-app/file-attachment-v2.0.0/birthdate-trapping-02.jpg"
             }
           ]
         }
