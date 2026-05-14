@@ -30,8 +30,8 @@
           "text": "Centralized the version monitoring data using GitHub so all LGU systems use one shared JSON file instead of separate copies",
           "attachments": [
             {
-              "type": "",
-              "file": ""
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedula-web-app/file-attachment-v2.3.0/miscellaneous-img-centralized.jpg"
             }
           ]
         }
@@ -213,12 +213,12 @@
           "text": "Added Individual and Corporation Cedula form UI redesigned to mimic the physical cedula form for better familiarity and easier user understanding",
           "attachments": [
             {
-              "type": "",
-              "file": ""
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedula-web-app/file-attachment-v2.0.0/cedula-img-taxpayer-corporation.jpg"
             },
               {
-              "type": "",
-              "file": ""
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedula-web-app/file-attachment-v2.0.0/cedula-img-taxpayer-individual.jpg"
             }
           ]
         },
