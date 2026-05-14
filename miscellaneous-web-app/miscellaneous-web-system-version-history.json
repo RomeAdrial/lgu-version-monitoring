@@ -78,7 +78,7 @@
           "text": "Added Digital Cedula in the issuance process",
           "attachments": [
             {
-              "type": "image",
+              "type": "pdf",
               "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/miscellaneous-web-app/file-attachment-v1.3.0/digital-sample.pdf"
             }
           ]
