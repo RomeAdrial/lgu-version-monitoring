@@ -1,10 +1,10 @@
 {
-  "system": "PPAP Web System in BMMS",
+  "system": "PPAP Web System",
   "versions": [
     {
-      "id": "m4",
-      "version": "1.4.0",
-      "datetime": "2026-06-04T14:30:00",
+      "id": "p3",
+      "version": "2.1.0",
+      "datetime": "2026-05-14T14:37:00",
       "latest": true,
       "title": "Track System Updates and Versions",
   "newFeatures": [
@@ -71,7 +71,7 @@
       "id": "p2",
       "version": "2.0.0",
       "datetime": "2026-05-14T14:30:00",
-      "latest": true,
+      "latest": false,
       "title": "Initial Web Enhancement and On-Premise System Migration",
       "newFeatures": [
         {
