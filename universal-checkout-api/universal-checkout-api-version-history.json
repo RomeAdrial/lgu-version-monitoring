@@ -4,7 +4,7 @@
   {
       "id": "uc4",
       "version": "2.3.0",
-      "datetime": "2026-05-10T14:30:00",
+      "datetime": "2026-05-11T14:30:00",
       "latest": true,
       "title": "Track System Updates and Versions",
   "newFeatures": [
@@ -70,7 +70,7 @@
     {
   "id": "uc3",
   "version": "2.2.0",
-  "datetime": "2026-04-05T13:30:00",
+  "datetime": "2026-04-06T13:30:00",
   "latest": false,
   "title": "BRRS WEB and PTMS WEB Integration in Universal Checkout API",
   "newFeatures": [
@@ -147,7 +147,7 @@
     {
       "id": "uc2",
       "version": "2.1.0",
-      "datetime": "2026-05-18T13:30:00",
+      "datetime": "2026-04-02T13:30:00",
       "latest": false,
       "title": "Gateway Resilience Page, GCash Callback Logging, and UI Enhancement",
       "newFeatures": [
@@ -224,7 +224,7 @@
     {
       "id": "uc1",
       "version": "2.0.0",
-      "datetime": "2026-03-20T10:00:00",
+      "datetime": "2026-03-19T10:00:00",
       "latest": false,
       "title": "Initial Release of Universal Checkout API Integration",
       "newFeatures": [
