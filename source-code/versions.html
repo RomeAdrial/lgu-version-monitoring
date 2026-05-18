@@ -1,0 +1,2420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Version Monitoring System</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+<style>
+.meta-pill {
+    background: #f6f8fa;
+    border: 1px solid #d0d7de;
+    padding: 3px 8px;
+    border-radius: 999px;
+    font-size: 11px;
+    color: #24292f;
+}
+/* HAS CHANGES → GREEN on hover */
+.panel-section ul li.add:hover::before {
+    background: #74dc2e !important;
+}
+
+/* NO CHANGES → RED on hover */
+.panel-section ul li.none:hover::before {
+    background: #cf222e;
+}
+.panel-section,
+.panel-section ul {
+    overflow: visible;
+}
+.right-panel {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 340px;
+    height: 100vh;
+
+    background: #ffffff;
+    border-left: 1px solid #d0d7de;
+
+    padding: 14px;
+    overflow-y: auto;
+
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.right-panel h3 {
+   
+    top: 0;
+    z-index: 10;
+
+    margin: -14px -14px 10px -14px;
+    padding: 12px 14px;
+
+    font-size: 13px;
+    font-weight: 600;
+    color: #24292f;
+
+    background: #ffffff;
+    border-bottom: 1px solid #d0d7de;
+}
+
+/* =========================
+   SECTION (better structure for empty / minimal content)
+========================= */
+
+.panel-section {
+    margin-bottom: 10px;
+    padding: 10px;
+
+    border: none;
+    border-radius: 6px;
+
+    background: #ffffff;
+
+    min-height: 48px;
+}
+
+.panel-section h4 {
+    font-size: 11px;
+    font-weight: 600;
+    color: #57606a;
+
+    margin: 0 0 8px 0;
+
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* =========================
+   LIST (clean + better readability for sparse content)
+========================= */
+
+.panel-section ul {
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+/* timeline line only shows when items exist (visually subtle fallback) */
+.panel-section ul:empty::before {
+    content: "No items";
+    position: relative;
+    display: block;
+
+    font-size: 12px;
+    color: #8c959f;
+    padding-left: 6px;
+}
+
+.panel-section ul:not(:empty)::before {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 6px;
+    bottom: 6px;
+
+    width: 1px;
+    background: #d0d7de;
+}
+
+.panel-section ul li {
+    list-style: none;
+
+    position: relative;
+
+    font-size: 13px;
+    line-height: 1.45;
+    color: #24292f;
+
+    padding: 6px 10px 6px 20px;
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    border-radius: 6px;
+
+    word-break: break-word;
+}
+
+/* commit dot */
+.panel-section ul li::before {
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+
+    background: #d0d7de;
+    border: 2px solid #ffffff;
+}
+
+/* hover minimal */
+.panel-section ul li:hover {
+    background: #f6f8fa;
+}
+
+/* active state subtle */
+.panel-section ul li.active {
+    background: #f1f8ff;
+    color: #0969da;
+    font-weight: 500;
+}
+
+.panel-section ul li.active::before {
+    background: #0969da;
+}
+
+.panel-section ul li + li {
+    margin-top: 2px;
+}
+
+/* =========================
+   EMPTY STATE (important improvement for "minimal text")
+========================= */
+
+.panel-section:has(ul:empty) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60px;
+    color: #8c959f;
+    font-size: 12px;
+}
+
+/* =========================
+   BADGES
+========================= */
+
+.add { color: #1a7f37; font-weight: 600; }
+.fix { color: #0969da; font-weight: 600; }
+.remove { color: #cf222e; font-weight: 600; }
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+.right-panel::-webkit-scrollbar {
+    width: 7px;
+}
+
+.right-panel::-webkit-scrollbar-thumb {
+    background: #d0d7de;
+    border-radius: 999px;
+}
+
+.right-panel::-webkit-scrollbar-thumb:hover {
+    background: #b0b8c1;
+}
+
+/* =========================
+   DRAG HANDLE
+========================= */
+
+.right-panel::before {
+    content: "";
+    position: absolute;
+    left: -2px;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    cursor: col-resize;
+    background: transparent;
+}
+
+
+/* THIS is the actual draggable edge */
+.right-panel::before {
+    content: "";
+    position: absolute;
+    left: -4px;
+    top: 0;
+    width: 8px;
+    height: 100%;
+    cursor: col-resize;
+    background: transparent;
+}
+
+/* visible hover hint (modern UX like VSCode) */
+.right-panel::before:hover {
+    background: rgba(9,105,218,0.08);
+}
+.version {
+    position: relative;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 14px;
+
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+/* REMOVE old "flat feeling" and replace with depth on hover */
+.version:hover {
+    transform: translateY(-3px);
+    border-color: #c9d3df;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+}
+
+/* ACTIVE STATE = subtle focus ring (modern UI pattern) */
+.version:not(.collapsed) {
+    border-color: #b8c4d3;
+    box-shadow: 0 0 0 3px rgba(9,105,218,0.08);
+    background: #fcfdff;
+}
+
+/* LEFT DOT INDICATOR (instead of border bar — more modern) */
+.version::before {
+    content: "";
+    position: absolute;
+    left: -7px;
+    top: 22px;
+    width: 10px;
+    height: 10px;
+    background: #c7ced8;
+    border-radius: 50%;
+    border: 2px solid #f6f8fa;
+}
+
+/* ACTIVE DOT */
+.version:not(.collapsed)::before {
+    background: #0969da;
+}
+
+/* HOVER DOT */
+.version:hover::before {
+    background: #6b7280;
+}
+
+/* TITLE STYLE IMPROVEMENT */
+.version h3 {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+}
+
+/* META CLEANER */
+.meta {
+    font-size: 12.5px;
+    color: #6b7280;
+    margin-top: 6px;
+}
+
+/* TAG REFINED (LESS BLOCKY) */
+.tag {
+    background: #111827;
+    color: #fff;
+    font-size: 10px;
+    padding: 3px 7px;
+    border-radius: 999px;
+    margin-left: 6px;
+    opacity: 0.9;
+}
+
+/* DETAILS FEEL MORE STRUCTURED */
+.version-details {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed #e5e7eb;
+}
+
+/* LIST TIGHTER AND CLEANER */
+.version-details ul li {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #374151;
+}
+/* subtle page depth */
+body {
+    background: linear-gradient(180deg, #f6f8fa 0%, #f3f6fb 100%);
+}
+
+/* smoother scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* sidebar polish */
+.sidebar {
+    box-shadow: 2px 0 12px rgba(0,0,0,0.03);
+}
+
+/* system active indicator */
+.system-header.active {
+    position: relative;
+}
+
+.system-header.active::before {
+    content: "";
+    position: absolute;
+    left: -16px;
+    top: 8px;
+    bottom: 8px;
+    width: 3px;
+    background: var(--primary);
+    border-radius: 2px;
+}
+
+/* version card hover lift */
+.version {
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.version:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    border-color: #c9d4e5;
+}
+
+/* active opened version highlight */
+.version:not(.collapsed) {
+    border-color: #b6d4ff;
+}
+
+/* right panel upgrade (slight glass feel) */
+.right-panel {
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(6px);
+}
+
+/* sidebar links smoother feel */
+.system-content a {
+    transition: all 0.15s ease;
+}
+
+/* tag glow */
+.tag {
+    box-shadow: 0 2px 6px rgba(25, 135, 84, 0.25);
+}
+
+/* scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f3f6;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c7ced8;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #aeb7c4;
+}
+
+/* panel section smoother spacing */
+.panel-section {
+    border-left: 2px solid #e6ebf1;
+}
+
+/* subtle header emphasis */
+.header h1 {
+    letter-spacing: -0.3px;
+}
+
+.header p {
+    max-width: 600px;
+    line-height: 1.4;
+}
+:root {
+    --bg: #f6f8fa;
+    --card: #ffffff;
+    --text: #1f2328;
+    --muted: #656d76;
+    --primary: #0969da;
+    --border: #d0d7de;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--bg);
+    display: flex;
+    color: var(--text);
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 260px;
+    background: var(--card);
+    height: 100vh;
+    border-right: 1px solid var(--border);
+    padding: 16px;
+    position: fixed;
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.system {
+    margin-bottom: 8px;
+}
+
+.system-header {
+    padding: 8px 10px;
+    cursor: pointer;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.system-header:hover {
+    background: #f3f4f6;
+}
+
+.system-header.active {
+    background: #e7f3ff;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.system-content {
+    display: none;
+    padding-left: 8px;
+    margin-top: 4px;
+}
+
+.system-content a {
+    display: block;
+    padding: 5px 8px;
+    font-size: 13px;
+    text-decoration: none;
+    color: var(--muted);
+    border-radius: 6px;
+}
+
+.system-content a:hover {
+    background: #f3f4f6;
+    color: var(--primary);
+}
+
+/* MAIN CONTENT */
+.content {
+    margin-left: 280px;
+    margin-right: 340px;
+    padding: 30px;
+    width: 100%;
+    max-width: 900px;
+}
+
+/* HEADER */
+.header h1 {
+    margin: 0;
+    font-size: 26px;
+}
+
+.header p {
+    color: var(--muted);
+    margin-top: 5px;
+}
+
+/* VERSION CARD */
+.version {
+    background: var(--card);
+    padding: 18px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    margin-bottom: 15px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    cursor: pointer;
+}
+
+.version h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.tag {
+    background: #1a7f37;
+    color: white;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    margin-left: 8px;
+}
+
+.meta {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 6px 0 10px;
+}
+
+.version-details {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+}
+
+.version.collapsed .version-details {
+    display: none;
+}
+
+ul {
+    padding-left: 18px;
+    margin: 0;
+}
+
+ul li {
+    font-size: 13px;
+    margin-bottom: 3px;
+}
+
+/* RIGHT PANEL (GITHUB STYLE INSPECTOR) */
+.right-panel {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 320px;
+    height: 100vh;
+    background: var(--card);
+    border-left: 1px solid var(--border);
+    padding: 18px;
+    overflow-y: auto;
+}
+
+.right-panel h3 {
+    margin-top: 0;
+    font-size: 16px;
+}
+
+.panel-meta {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 12px;
+    background: #f6f8fa;
+    padding: 8px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+}
+
+.panel-section {
+    margin-bottom: 16px;
+    border-left: 2px solid #eaeef2;
+    padding-left: 10px;
+}
+
+.panel-section h4 {
+    font-size: 12px;
+    color: var(--primary);
+    margin-bottom: 6px;
+}
+
+.add {
+    color: #1a7f37;
+}
+
+.placeholder {
+    color: var(--muted);
+    font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <h2>Systems</h2>
+    <div id="sidebar"></div>
+</div>
+
+<!-- MAIN -->
+<div class="content">
+    <div class="header">
+        <h1>System Changelog</h1>
+         <p>This section presents the system’s version history, listing all recorded releases for review and inspection.</p>
+    </div>
+
+    <div id="container"></div>
+</div>
+
+<!-- RIGHT PANEL -->
+<div class="right-panel" id="rightPanel">
+    <h3>Release Inspector</h3>
+    <div class="placeholder">Click a version to inspect changes.</div>
+</div>
+
+<div id="ghModal" style="
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+    cursor: zoom-out;
+">
+
+    <!-- IMAGE -->
+    <img id="ghModalImg" style="
+        max-width: 92%;
+        max-height: 92%;
+        border-radius: 12px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        display:none;
+    ">
+
+    <!-- PDF -->
+    <iframe id="ghModalPdf" style="
+        width: 90%;
+        height: 92%;
+        border: none;
+        border-radius: 12px;
+        background: white;
+        display:none;
+    "></iframe>
+
+
+</div>
+<style>
+ /* =========================
+   GITHUB-STYLE LIST ITEM
+========================= */
+/* FULLSCREEN MODAL FIXED (GITHUB STYLE LIGHTBOX) */
+#ghModal {
+    position: fixed !important;
+    inset: 0 !important;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0,0,0,0.88);
+
+    z-index: 999999 !important; /* force above EVERYTHING */
+
+    padding: 20px;
+}
+
+/* IMAGE CENTER FIX */
+#ghModalImg {
+    display: block;
+    margin: auto;
+
+    max-width: 92%;
+    max-height: 92%;
+
+    border-radius: 12px;
+
+    box-shadow: 0 25px 70px rgba(0,0,0,0.6);
+
+    transform: scale(0.95);
+    transition: 0.15s ease;
+}
+.gh-item {
+    position: relative;
+    padding: 8px 10px 8px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.15s ease;
+     z-index: 1;
+}
+
+/* left subtle dot like GitHub timeline */
+.gh-item::before {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #d0d7de;
+}
+
+/* hover feel (very GitHub-like) */
+.gh-item:hover {
+    background: #f6f8fa;
+    transform: translateX(2px);
+     position: relative;
+    z-index: 9999;
+}
+
+/* text styling */
+.gh-text {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #24292f;
+}
+
+/* =========================
+   PREVIEW POPUP (MODERN GLASS STYLE)
+========================= */
+
+.gh-preview {
+    position: absolute;
+    left: 304px;
+    top: 32px;
+
+    width: 220px;
+    height: 140px;
+
+    border-radius: 10px;
+    overflow: hidden;
+
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(10px);
+
+    border: 1px solid #d0d7de;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+
+    display: none;
+      z-index: 99999; /* important */
+}
+
+/* image */
+.gh-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* label */
+.gh-preview-label {
+    position: absolute;
+    bottom: 6px;
+    right: 8px;
+
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 999px;
+
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+}
+
+/* show on hover */
+.gh-item:hover .gh-preview {
+    display: block;
+    animation: pop 0.12s ease-out;
+}
+
+@keyframes pop {
+    from {
+        opacity: 0;
+        transform: translateY(6px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.file-tags {
+    display: inline-flex;
+    gap: 6px;
+    margin-left: 6px;
+    align-items: center;
+    vertical-align: middle;
+}
+
+/* BASE TAG — SaaS smart badge */
+.file-tag {
+    position: relative;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    padding: 3px 9px;
+    border-radius: 999px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+
+    line-height: 1;
+
+    white-space: nowrap;
+
+    background: #ffffff;
+
+    color: #111827;
+
+    border: 1px solid rgba(17, 24, 39, 0.12);
+
+    letter-spacing: 0.2px;
+
+    transition: all 0.15s ease;
+
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+/* hover = SaaS lift */
+.file-tag:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    border-color: rgba(17, 24, 39, 0.2);
+}
+
+/* IMAGE — soft sky blue (Vercel-like tone) */
+.file-tag.img {
+    background: #eff6ff;
+    color: #2563eb;
+    border-color: #bfdbfe;
+}
+
+/* PDF — soft coral red (Stripe-like alert tone) */
+.file-tag.pdf {
+    background: #fef2f2;
+    color: #dc2626;
+    border-color: #fecaca;
+}
+
+/* COUNT — minimal SaaS pill */
+.file-tag-count {
+    font-size: 8px;
+    font-weight: 700;
+
+    margin-left: 4px;
+
+    padding: 2px 6px;
+
+    border-radius: 999px;
+
+    background: rgba(17, 24, 39, 0.06);
+
+    color: rgba(17, 24, 39, 0.65);
+
+    border: 1px solid rgba(17, 24, 39, 0.08);
+
+    line-height: 1;
+}
+
+/* =========================
+   MOBILE RESPONSIVE PATCH
+   (SAFE: overrides only)
+========================= */
+
+@media (max-width: 1024px) {
+
+    /* -------------------------
+       LAYOUT BECOMES STACKED
+    ------------------------- */
+    body {
+        flex-direction: column;
+    }
+
+    /* SIDEBAR → TOP HORIZONTAL / COLLAPSIBLE */
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid #d0d7de;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .system {
+        width: 100%;
+    }
+
+    .system-content {
+        padding-left: 0;
+    }
+
+    /* -------------------------
+       MAIN CONTENT FULL WIDTH
+    ------------------------- */
+    .content {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding: 14px;
+        max-width: 100%;
+    }
+
+    /* -------------------------
+       RIGHT PANEL → BOTTOM DRAWER STYLE
+    ------------------------- */
+    .right-panel {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: auto;
+
+        width: 100% !important;
+        height: 45vh;
+
+        border-left: none;
+        border-top: 1px solid #d0d7de;
+
+        border-radius: 14px 14px 0 0;
+
+        z-index: 9999;
+
+        box-shadow: 0 -10px 30px rgba(0,0,0,0.08);
+
+        resize: none;
+    }
+
+    /* drag handle disabled on mobile */
+    .right-panel::before {
+        display: none;
+    }
+
+    /* -------------------------
+       VERSION CARD SPACING
+    ------------------------- */
+    .version {
+        padding: 14px;
+    }
+
+    .version h3 {
+        font-size: 14px;
+    }
+
+    /* -------------------------
+       GH PREVIEW FIX (IMPORTANT)
+    ------------------------- */
+    .gh-preview {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 260px;
+        height: 160px;
+        z-index: 99999;
+    }
+
+    /* prevent hover popups from breaking layout */
+    .gh-item:hover .gh-preview {
+        display: none;
+    }
+
+    /* -------------------------
+       MODAL IMPROVEMENTS
+    ------------------------- */
+    #ghModal {
+        padding: 10px;
+    }
+
+    #viewerWrapper {
+        width: 100% !important;
+        height: 90% !important;
+    }
+
+    /* arrows closer for mobile */
+    #prevFileBtn,
+    #nextFileBtn {
+        left: 10px !important;
+        right: 10px !important;
+        width: 38px !important;
+        height: 38px !important;
+    }
+}
+
+@media (max-width: 1024px) {
+
+    /* =========================
+       GLOBAL LAYOUT FIX
+    ========================= */
+    body {
+        flex-direction: column;
+    }
+
+    /* =========================
+       SIDEBAR → TOP BAR (CLEAN & COMPACT)
+    ========================= */
+    .sidebar {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        height: auto;
+
+        display: flex;
+        flex-direction: column;
+
+        padding: 10px;
+        gap: 8px;
+
+        border-right: none;
+        border-bottom: 1px solid #d0d7de;
+
+        z-index: 1000;
+        background: #fff;
+    }
+
+    .sidebar h2 {
+        margin: 0;
+        font-size: 11px;
+    }
+
+    .system {
+        width: 100%;
+    }
+
+    .system-header {
+        padding: 10px;
+        font-size: 13px;
+        border: 1px solid #e5e7eb;
+        background: #f9fafb;
+    }
+
+    /* collapse system list cleaner */
+    .system-content a {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    /* =========================
+       MAIN CONTENT → FULL WIDTH
+    ========================= */
+    .content {
+        margin: 0 !important;
+        padding: 12px;
+        max-width: 100%;
+    }
+
+    .header h1 {
+        font-size: 20px;
+    }
+
+    .header p {
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    /* =========================
+       VERSION CARDS (MOBILE STACK STYLE)
+    ========================= */
+    .version {
+        padding: 14px;
+        border-radius: 12px;
+    }
+
+    .version h3 {
+        font-size: 14px;
+    }
+
+    .meta {
+        font-size: 12px;
+    }
+
+    /* =========================
+       RIGHT PANEL → BOTTOM SHEET (MODERN UX)
+    ========================= */
+    .right-panel {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        top: auto;
+        width: 100% !important;
+        height: 50vh;
+
+        border-radius: 16px 16px 0 0;
+        border-top: 1px solid #d0d7de;
+        border-left: none;
+
+        box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
+
+        background: rgba(255,255,255,0.96);
+        backdrop-filter: blur(10px);
+
+        z-index: 9999;
+    }
+
+    /* disable resize drag on mobile */
+    .right-panel::before {
+        display: none;
+    }
+
+    /* =========================
+       GH PREVIEW FIX (IMPORTANT)
+    ========================= */
+    .gh-preview {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 240px;
+        height: 150px;
+        z-index: 99999;
+    }
+
+    /* disable hover preview glitch */
+    .gh-item:hover .gh-preview {
+        display: none;
+    }
+
+    /* =========================
+       MODAL IMPROVEMENT
+    ========================= */
+    #ghModal {
+        padding: 10px;
+    }
+
+    #viewerWrapper {
+        width: 100% !important;
+        height: 92% !important;
+    }
+
+    #prevFileBtn,
+    #nextFileBtn {
+        width: 38px !important;
+        height: 38px !important;
+        left: 8px !important;
+        right: 8px !important;
+    }
+}
+</style>
+<script>
+let systemsData = [];
+let currentSystem = null;
+let filterMode = "";
+
+const systemFiles = [
+  "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedula-web-app/cedula-web-system-version-history.json",
+  "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/miscellaneous-web-app/miscellaneous-web-system-version-history.json",
+  "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/ppap-web-app/ppap-web-system-version-history.json",
+  "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/working-permit-web-app/working-permit-web-system-version-history.json",
+  "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/universal-checkout-api/universal-checkout-api-version-history.json"
+];
+
+
+window.onload = loadAllSystems;
+
+/* LOAD */
+async function loadAllSystems() {
+
+      const responses = await Promise.all(
+        systemFiles.map(loadFile)
+    );
+
+    systemsData = responses;
+
+    renderSidebar();
+    renderContent();
+}
+async function loadFile(url) {
+    const res = await fetch(url);
+    return await res.json();
+}
+/* SIDEBAR */
+function renderSidebar() {
+  
+    const sidebar = document.getElementById("sidebar");
+
+    sidebar.innerHTML = `
+        <div class="system">
+            <div class="system-header active" id="allBtn">
+                All Systems
+            </div>
+        </div>
+    `;
+
+    systemsData.forEach((sys, index) => {
+        const id = "sys_" + index;
+
+        sidebar.innerHTML += `
+        <div class="system">
+            <div class="system-header" data-system="${sys.system}" onclick="clearReleaseInspector()">
+                <span>${sys.system}</span>
+                <span class="toggle" data-id="${id}">▶</span>
+            </div>
+
+            <div class="system-content" id="${id}">
+                ${sys.versions.map(v => `
+                    <a href="#${v.id}" data-system="${sys.system}">
+                        v${v.version}
+                    </a>
+                `).join("")}
+            </div>
+        </div>`;
+    });
+
+    attachEvents();
+}
+
+function clearReleaseInspector(){
+
+document.getElementById('rightPanel').innerHTML ="<h3>Release Inspector</h3><div class='placeholder'>Click a version to inspect changes.</div>";
+}
+
+document.addEventListener("click", function (e) {
+    if (e.target.closest(".system-header")) {
+        clearReleaseInspector();
+    }
+});
+/* EVENTS */
+function attachEvents() {
+
+    document.getElementById("allBtn").onclick = () => {
+        currentSystem = null;
+        setActive(null);
+        renderContent();
+    };
+
+    document.querySelectorAll(".system-header").forEach(header => {
+    
+        header.onclick = function (e) {
+           
+            if (e.target.classList.contains("toggle")) return;
+            currentSystem = this.dataset.system || null;
+            setActive(this);
+            renderContent();
+        };
+    });
+
+    document.querySelectorAll(".toggle").forEach(btn => {
+        btn.onclick = function (e) {
+            const el = document.getElementById(this.dataset.id);
+            el.style.display = el.style.display === "block" ? "none" : "block";
+            this.textContent = el.style.display === "block" ? "▼" : "▶";
+            e.stopPropagation();
+        };
+    });
+}
+
+/* ACTIVE */
+function setActive(el) {
+    document.querySelectorAll(".system-header")
+        .forEach(h => h.classList.remove("active"));
+
+    if (el) el.classList.add("active");
+    else document.getElementById("allBtn").classList.add("active");
+}
+
+/* VERSION SORT */
+function compareVersions(a, b) {
+    const pa = (a.version || "0.0.0").split(".").map(Number);
+    const pb = (b.version || "0.0.0").split(".").map(Number);
+
+    for (let i = 0; i < 3; i++) {
+        const diff = (pb[i] || 0) - (pa[i] || 0);
+        if (diff !== 0) return diff;
+    }
+    return 0;
+}
+
+/* DIFF (NO REMOVED) */
+function diffArrays(current = [], previous = []) {
+    return {
+        added: current.filter(x => !previous.includes(x))
+    };
+}
+
+function getPreviousVersion(system, id) {
+    const sys = systemsData.find(s => s.system === system);
+    if (!sys) return null;
+
+    const sorted = [...sys.versions].sort(compareVersions);
+    const index = sorted.findIndex(v => v.id === id);
+
+    return sorted[index + 1] || null;
+}
+
+function getAttachmentStats(v) {
+    const stats = {
+        total: 0,
+        img: 0,
+        pdf: 0
+    };
+
+    function scan(list) {
+        (list || []).forEach(item => {
+            (item.attachments || []).forEach(a => {
+                stats.total++;
+
+                const type = (a.type || "").toLowerCase();
+
+                if (type === "image") stats.img++;
+                else if (type === "pdf") stats.pdf++;
+            });
+        });
+    }
+
+    scan(v.newFeatures);
+    scan(v.improvements);
+    scan(v.fixes);
+
+    return stats;
+}
+/* RIGHT PANEL */
+function renderRightPanel(v) {
+      window.currentRenderTarget = v; // 👈 ADD THIS
+    const panel = document.getElementById("rightPanel");
+    const prev = getPreviousVersion(v.system, v.id);
+
+    const featureDiff = diffArrays(v.newFeatures || [], prev?.newFeatures || []);
+    const improvementDiff = diffArrays(v.improvements || [], prev?.improvements || []);
+    const fixDiff = diffArrays(v.fixes || [], prev?.fixes || []);
+    const attachStats = getAttachmentStats(v);
+
+    const isLatest = v.latest === true;
+
+    panel.innerHTML = `
+        <h3 style="
+            margin-bottom:10px;
+            font-size:14px;
+            font-weight:700;
+            color:#24292f;
+        ">
+            Release Inspector
+        </h3>
+
+        <!-- META CARD -->
+        <div class="panel-meta" style="
+            background: linear-gradient(180deg, #ffffff 0%, #f6f8fa 100%);
+            border: 1px solid #d0d7de;
+            border-radius: 12px;
+            padding: 12px 14px;
+            box-shadow: 0 1px 2px rgba(27,31,36,0.08);
+        ">
+
+            <!-- TITLE + LATEST -->
+            <div style="
+                display:flex;
+                align-items:center;
+                justify-content:space-between;
+                margin-bottom:10px;
+            ">
+                <div style="
+                    font-size:13px;
+                    font-weight:600;
+                    color:#24292f;
+                    display:flex;
+                    align-items:center;
+                    gap:8px;
+                ">
+                    ${v.title || "Untitled Release"}
+
+                    ${isLatest ? `
+                        <span style="
+                            font-size:10px;
+                            font-weight:700;
+                            padding:2px 8px;
+                            border-radius:999px;
+                            background:#1f883d;
+                            color:#fff;
+                            border:1px solid #2da44e33;
+                            letter-spacing:0.3px;
+                            line-height:16px;
+                        ">
+                            LATEST
+                        </span>
+                    ` : ""}
+                </div>
+            </div>
+
+            <!-- SYSTEM + VERSION (BALANCED) -->
+            <div style="
+                display:flex;
+                align-items:center;
+                gap:8px;
+                margin-bottom:8px;
+            ">
+                <span style="
+                    font-size:12px;
+                    font-weight:600;
+                    color:#57606a;
+                    border-radius:999px;
+                    background:white;
+                    border:none;
+                    line-height:16px;
+                    display:inline-flex;
+
+                ">
+                    ${v.system}
+                </span>
+
+                <span style="color:#d0d7de;">•</span>
+
+                <span style="
+                    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+                    font-size:16px;
+                    font-weight:700;
+                    color:#0969da;
+                    background:#f1f8ff;
+                    border:1px solid #cdd9e5;
+                    padding:3px 10px;
+                    border-radius:999px;
+                    line-height:16px;
+                    display:inline-flex;
+                    align-items:center;
+                ">
+                    v${v.version}
+                </span>
+            </div>
+
+            <!-- DATE -->
+            <div style="
+                font-size:11px;
+                color:#57606a;
+                margin-bottom:10px;
+                display:flex;
+                align-items:center;
+                gap:6px;
+            ">
+                <span>📅</span>
+               <span>
+  ${
+    v.datetime
+      ? new Date(v.datetime).toLocaleString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          hour: "numeric",
+          minute: "2-digit",
+          hour12: true
+        })
+      : "No date provided"
+  }
+</span>
+            </div>
+
+            <!-- STATS -->
+            <div style="
+                display:flex;
+                gap:6px;
+                flex-wrap:wrap;
+            ">
+                <span style="
+                    font-size:11px;
+                    padding:3px 8px;
+                    border-radius:999px;
+                    background:#f6f8fa;
+                    border:1px solid #d0d7de;
+                ">✨ ${v.newFeatures?.length || 0} features</span>
+
+                <span style="
+                    font-size:11px;
+                    padding:3px 8px;
+                    border-radius:999px;
+                    background:#f6f8fa;
+                    border:1px solid #d0d7de;
+                ">⚡ ${v.improvements?.length || 0} improvements</span>
+
+                <span style="
+                    font-size:11px;
+                    padding:3px 8px;
+                    border-radius:999px;
+                    background:#f6f8fa;
+                    border:1px solid #d0d7de;
+                ">🐞 ${v.fixes?.length || 0} fixes</span>
+
+       <span style="
+ font-size:11px;
+                    padding:3px 8px;
+                    border-radius:999px;
+                    background:#f6f8fa;
+                    border:1px solid #d0d7de;
+">
+
+   
+
+    <span style="display:inline-flex; gap:5px; align-items:center;">
+
+        <!-- TOTAL -->
+        <span style="color:#57606a;">
+          📂 ${attachStats.img + attachStats.pdf}  Attachments  
+        </span>
+
+        <span style="opacity:.4;">:</span>
+
+        <!-- IMG -->
+        <span style="
+  
+            font-size:11px;
+        ">
+            ${attachStats.img} img
+        </span>
+
+        <span style="opacity:.4;">•</span>
+
+        <!-- PDF -->
+        <span style="
+
+            font-size:11px;
+        ">
+            ${attachStats.pdf} pdf
+        </span>
+
+    </span>
+
+</span>
+            </div>
+
+            <!-- COMPARE -->
+            <div style="
+                margin-top:10px;
+                padding-top:8px;
+                border-top:1px dashed #d0d7de;
+                font-size:11px;
+                color:#57606a;
+            ">
+               
+          📌 Hover or click the specific Features, Improvements, or Fixes to view the attached files related to the changes.
+                       
+           
+            </div>
+        </div>
+
+        ${renderSection("✨ Features Added", featureDiff)}
+        ${renderSection("⚡ Improvements Updated", improvementDiff)}
+        ${renderSection("🐞 Fixes Introduced", fixDiff)}
+        <!-- TRY UPDATED SYSTEM (GITHUB STYLE) -->
+<div style="
+    margin-top:16px;
+    margin-bottom:36px;
+    border:1px solid #d0d7de;
+    border-radius:12px;
+    background:#f6f8fa;
+    padding:12px 14px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+">
+
+    <!-- LEFT CONTENT -->
+    <div style="display:flex; align-items:flex-start; gap:10px;">
+
+        <!-- ICON -->
+        <div style="
+            width:28px;
+            height:28px;
+            border-radius:8px;
+            background:#ffffff;
+            border:1px solid #d0d7de;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:14px;
+        ">
+            🚀
+        </div>
+
+        <!-- TEXT -->
+        <div>
+            <div style="
+                font-size:12px;
+                font-weight:600;
+                color:#24292f;
+                margin-bottom:2px;
+            ">
+                Try the updated system
+            </div>
+
+            <div style="
+                font-size:11px;
+                color:#57606a;
+                line-height:1.4;
+            ">
+                Includes latest features, improvements, and fixes.
+            </div>
+        </div>
+    </div>
+
+    <!-- BUTTON -->
+    <a href="#"  onclick="this.href = window.location.origin + '/webportal/Register.aspx'"
+    target="_blank"
+   rel="noopener noreferrer"
+       style="
+            font-size:12px;
+            font-weight:600;
+            color:#0969da;
+            text-decoration:none;
+            padding:6px 10px;
+            border-radius:6px;
+            border:1px solid #d0d7de;
+            background:#ffffff;
+            white-space:nowrap;
+       "
+       onmouseover="this.style.background='#f3f4f6'"
+       onmouseout="this.style.background='#ffffff'"
+    >
+        Try now →
+    </a>
+
+</div>
+    `;
+}
+
+function renderSection(title, diff) {
+
+    if (!diff.added.length) {
+        return `
+        <div class="panel-section">
+            <h4>${title}</h4>
+            <ul>
+                <li class="none">No changes</li>
+            </ul>
+        </div>`;
+    }
+
+    return `
+    <div class="panel-section">
+
+        <h4>${title}</h4>
+
+        <ul>
+
+            ${diff.added.map(i => {
+
+                const text = i.text || i;
+
+               const attachments = Array.isArray(i.attachments)
+    ? i.attachments
+    : [];
+
+const validAttachments = attachments.filter(att =>
+    att.file && att.file.trim() !== ""
+);
+
+const hasAttachments = validAttachments.length > 0;
+
+               // const hasAttachments = attachments.length > 0;
+
+                // =========================
+                // COUNT BY TYPE
+                // =========================
+                const imgCount = attachments.filter(a => a.type === "image").length;
+                const pdfCount = attachments.filter(a => a.type === "pdf").length;
+
+                let previewHTML = "";
+
+                if (hasAttachments) {
+
+                    const first = attachments[0];
+
+                    // =========================
+                    // PDF PREVIEW
+                    // =========================
+                    if (first.type === "pdf") {
+
+                        if (!pdfThumbCache[first.file]) {
+
+                            pdfThumbCache[first.file] = "loading";
+
+                            let pdfUrl = first.file
+                                .replace("raw.githubusercontent.com", "cdn.jsdelivr.net/gh")
+                                .replace("/main/", "@main/");
+
+                            generatePdfThumbnail(pdfUrl, (thumb) => {
+
+                                pdfThumbCache[first.file] = thumb;
+
+                                if (window.currentRenderTarget) {
+                                    renderRightPanel(window.currentRenderTarget);
+                                }
+                            });
+                        }
+
+                        previewHTML = `
+                            <div class="gh-preview"
+                                 data-files='${JSON.stringify(attachments)}'>
+
+                                ${
+                                    pdfThumbCache[first.file] &&
+                                    pdfThumbCache[first.file] !== "loading"
+                                    ? `<img src="${pdfThumbCache[first.file]}">`
+                                    : `<div style="
+                                            display:flex;
+                                            align-items:center;
+                                            justify-content:center;
+                                            height:100%;
+                                            font-size:12px;
+                                            color:#57606a;
+                                        ">Loading...</div>`
+                                }
+
+                                <div class="gh-preview-label">
+                                    ${attachments.length > 1 ? attachments.length + " files" : "PDF"}
+                                </div>
+
+                            </div>
+                        `;
+                    }
+
+                    // =========================
+                    // IMAGE PREVIEW
+                    // =========================
+                    else {
+
+                        previewHTML = `
+                            <div class="gh-preview"
+                                 data-files='${JSON.stringify(attachments)}'>
+
+                                <img src="${first.file}">
+
+                                <div class="gh-preview-label">
+                                    ${attachments.length > 1 ? attachments.length + " files" : "IMAGE"}
+                                </div>
+
+                            </div>
+                        `;
+                    }
+                }
+
+                return `
+                <li class="gh-item add"
+                    ${hasAttachments ? `data-files='${JSON.stringify(attachments)}'` : ""}>
+
+                    <!-- TEXT -->
+                    <span class="gh-text">
+                        ${text}
+
+                        <!-- FILE TAGS WITH COUNTS -->
+                        ${
+                            hasAttachments
+                                ? `<span class="file-tags">
+
+    ${
+        imgCount > 0
+            ? `<span class="file-tag img">
+                    IMG
+                    <span class="file-tag-count">${imgCount}</span>
+               </span>`
+            : ""
+    }
+
+    ${
+        pdfCount > 0
+            ? `<span class="file-tag pdf">
+                    PDF
+                    <span class="file-tag-count">${pdfCount}</span>
+               </span>`
+            : ""
+    }
+
+</span>`
+                                : ""
+                        }
+                    </span>
+
+                    ${previewHTML}
+
+                </li>
+                `;
+            }).join("")}
+
+        </ul>
+
+    </div>`;
+}
+
+/* CONTENT */
+function renderContent() {
+    const container = document.getElementById("container");
+
+    let data;
+
+    // 1. BUILD DATA FIRST
+    if (!currentSystem) {
+        data = systemsData.flatMap(s =>
+            s.versions.map(v => ({ ...v, system: s.system }))
+        );
+    } else {
+        const sys = systemsData.find(s => s.system === currentSystem);
+        data = sys ? sys.versions.map(v => ({ ...v, system: sys.system })) : [];
+    }
+
+    // 2. SORT FIRST
+    data.sort(compareVersions);
+
+    // 3. BUILD LATEST MAP
+    const latestMap = {};
+    systemsData.forEach(sys => {
+        const sorted = [...sys.versions].sort(compareVersions);
+        if (sorted.length) latestMap[sys.system] = sorted[0].id;
+    });
+
+    // 4. APPLY FILTER (ONLY AFTER latestMap exists)
+    if (currentSystem === null) {
+        data = data.filter(v => latestMap[v.system] === v.id);
+    }
+
+    // 5. HEADER
+    document.querySelector(".header h1").innerText =
+        currentSystem ? currentSystem : "All Systems";
+
+    // 6. RENDER
+    container.innerHTML = data.map(v => `
+        <div class="version collapsed" id="${v.id}" onclick="toggleVersion('${v.id}')">
+
+            <h3>
+                v${v.version}
+                ${v.id === latestMap[v.system] ? '<span class="tag">Latest</span>' : ''}
+            </h3>
+
+            <div class="meta">
+               ${v.system} • ${
+  v.datetime
+    ? new Date(v.datetime).toLocaleString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true
+      })
+    : ""
+}
+            </div>
+
+            <div class="version-details">
+                <ul>
+                    ${v.title ? `<li>${v.title}</li>` : ""}
+                </ul>
+            </div>
+        </div>
+    `).join("");
+}
+
+/* CLICK */
+function toggleVersion(id) {
+    document.querySelectorAll(".version").forEach(v => {
+        if (v.id !== id) v.classList.add("collapsed");
+        else v.classList.toggle("collapsed");
+    });
+
+    const v = systemsData
+        .flatMap(s => s.versions.map(v => ({ ...v, system: s.system })))
+        .find(x => x.id === id);
+
+    if (v) renderRightPanel(v);
+}
+
+
+const rightPanel = document.getElementById("rightPanel");
+const content = document.querySelector(".content");
+
+let isDragging = false;
+let startX = 0;
+let startWidth = 320;
+
+rightPanel.addEventListener("pointerdown", (e) => {
+    // only trigger if near left edge
+    if (e.offsetX > 10) return;
+
+    isDragging = true;
+    startX = e.clientX;
+    startWidth = rightPanel.offsetWidth;
+
+    document.body.style.userSelect = "none";
+});
+
+document.addEventListener("pointermove", (e) => {
+    if (!isDragging) return;
+
+    const dx = startX - e.clientX;
+    let newWidth = startWidth + dx;
+
+    // clamp
+    newWidth = Math.min(Math.max(newWidth, 280), 720);
+
+    rightPanel.style.width = newWidth + "px";
+    content.style.marginRight = (newWidth + 20) + "px";
+});
+
+document.addEventListener("pointerup", () => {
+    isDragging = false;
+    document.body.style.userSelect = "";
+});
+document.addEventListener("DOMContentLoaded", () => {
+    const maxWidth = 720;
+
+    rightPanel.style.width = maxWidth + "px";
+    content.style.marginRight = (maxWidth + 50) + "px";
+});
+
+document.addEventListener("click", function (e) {
+
+    const item = e.target.closest(".gh-item");
+    if (!item) return;
+
+    const files = JSON.parse(item.dataset.files || "[]");
+    if (!files.length) return;
+
+    const modal = document.getElementById("ghModal");
+
+    modal.innerHTML = `
+        <div id="viewerWrapper" style="
+            position:relative;
+            width:90%;
+            height:92%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+        ">
+
+            <!-- PREV BUTTON -->
+            <button id="prevFileBtn" style="
+                position:absolute;
+                left:-60px;
+                top:50%;
+                transform:translateY(-50%);
+                width:46px;
+                height:46px;
+                border:none;
+                border-radius:50%;
+                background:rgba(255,255,255,0.15);
+                color:white;
+                font-size:22px;
+                cursor:pointer;
+                backdrop-filter:blur(10px);
+            ">
+                ‹
+            </button>
+
+            <!-- CONTENT -->
+            <div id="viewerContent" style="
+                width:100%;
+                height:100%;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+            "></div>
+
+            <!-- NEXT BUTTON -->
+            <button id="nextFileBtn" style="
+                position:absolute;
+                right:-60px;
+                top:50%;
+                transform:translateY(-50%);
+                width:46px;
+                height:46px;
+                border:none;
+                border-radius:50%;
+                background:rgba(255,255,255,0.15);
+                color:white;
+                font-size:22px;
+                cursor:pointer;
+                backdrop-filter:blur(10px);
+            ">
+                ›
+            </button>
+
+            <!-- COUNTER -->
+            <div id="viewerCounter" style="
+                position:absolute;
+                bottom:-40px;
+                left:50%;
+                transform:translateX(-50%);
+                color:white;
+                font-size:13px;
+                background:rgba(0,0,0,0.45);
+                padding:6px 12px;
+                border-radius:999px;
+                backdrop-filter:blur(8px);
+            ">
+            </div>
+
+        </div>
+    `;
+
+    modal.style.display = "flex";
+
+    const viewerContent = document.getElementById("viewerContent");
+    const counter = document.getElementById("viewerCounter");
+
+    let currentIndex = 0;
+
+    function renderFile(index) {
+
+    const file = files[index];
+
+    viewerContent.innerHTML = "";
+
+    // =========================
+    // EXTRACT FILE NAME
+    // =========================
+    const fileName = file.file.split("/").pop();
+
+    // REMOVE OLD HEADER IF EXISTS
+    const oldHeader = document.getElementById("viewerHeader");
+    if (oldHeader) oldHeader.remove();
+
+    // =========================
+    // HEADER
+    // =========================
+    const header = document.createElement("div");
+
+    header.id = "viewerHeader";
+
+    header.style.cssText = `
+        position:absolute;
+        top:-52px;
+        left:0;
+        right:0;
+
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+
+        padding:10px 14px;
+
+        border-radius:12px;
+
+        background:rgba(20,20,20,0.75);
+        backdrop-filter:blur(12px);
+
+        color:white;
+
+        font-size:13px;
+    `;
+
+    header.innerHTML = `
+    <div style="
+        display:flex;
+        align-items:center;
+        gap:10px;
+        min-width:0;
+    ">
+
+        <!-- TYPE -->
+        <div style="
+            font-size:11px;
+            padding:4px 8px;
+            border-radius:999px;
+            background:rgba(255,255,255,0.12);
+            white-space:nowrap;
+        ">
+            ${file.type.toUpperCase()}
+        </div>
+
+        <!-- FILE NAME -->
+        <div style="
+            overflow:hidden;
+            text-overflow:ellipsis;
+            white-space:nowrap;
+            max-width:520px;
+            font-weight:500;
+        ">
+            ${fileName}
+        </div>
+
+    </div>
+
+    <div style="display:flex; align-items:center; gap:12px;">
+
+        <!-- COUNTER -->
+        <div style="
+            font-size:12px;
+            opacity:0.85;
+            white-space:nowrap;
+        ">
+            ${index + 1} / ${files.length}
+        </div>
+
+        <!-- CLOSE BUTTON -->
+        <button id="closeViewerBtn" style="
+            background:rgba(255,255,255,0.12);
+            border:none;
+            color:white;
+            width:28px;
+            height:28px;
+            border-radius:6px;
+            cursor:pointer;
+            font-size:16px;
+            line-height:28px;
+        ">
+            ×
+        </button>
+
+    </div>
+`;
+
+document.getElementById("viewerWrapper").appendChild(header);
+
+// CLOSE ACTION
+document.getElementById("closeViewerBtn").onclick = function (ev) {
+    ev.stopPropagation();
+
+    // hide viewer (adjust based on your modal structure)
+    document.getElementById("ghModal").style.display = "none";
+};
+    //document.getElementById("viewerWrapper").appendChild(header);
+
+    // =========================
+    // PDF
+    // =========================
+    if (file.type === "pdf") {
+
+        const iframe = document.createElement("iframe");
+
+        const pdfUrl = file.file
+            .replace("raw.githubusercontent.com", "cdn.jsdelivr.net/gh")
+            .replace("/main/", "@main/");
+
+        iframe.src =
+            "https://mozilla.github.io/pdf.js/web/viewer.html?file=" +
+            encodeURIComponent(pdfUrl);
+
+        iframe.style.cssText = `
+            width:100%;
+            height:100%;
+            border:none;
+            border-radius:12px;
+            background:white;
+        `;
+
+        viewerContent.appendChild(iframe);
+    }
+
+    // =========================
+    // IMAGE
+    // =========================
+    else {
+
+        const img = document.createElement("img");
+
+        img.src = file.file;
+
+        img.style.cssText = `
+            max-width:100%;
+            max-height:100%;
+            border-radius:12px;
+            box-shadow:0 20px 60px rgba(0,0,0,0.5);
+        `;
+
+        viewerContent.appendChild(img);
+    }
+
+    counter.innerHTML = `
+        ${index + 1} / ${files.length}
+    `;
+
+    // =========================
+    // SHOW/HIDE ARROWS
+    // =========================
+    document.getElementById("prevFileBtn").style.display =
+        files.length > 1 ? "block" : "none";
+
+    document.getElementById("nextFileBtn").style.display =
+        files.length > 1 ? "block" : "none";
+}
+
+    // INITIAL
+    renderFile(currentIndex);
+
+    // NEXT
+    document.getElementById("nextFileBtn").onclick = function (ev) {
+        ev.stopPropagation();
+
+        currentIndex++;
+
+        if (currentIndex >= files.length) {
+            currentIndex = 0;
+        }
+
+        renderFile(currentIndex);
+    };
+
+    // PREV
+    document.getElementById("prevFileBtn").onclick = function (ev) {
+        ev.stopPropagation();
+
+        currentIndex--;
+
+        if (currentIndex < 0) {
+            currentIndex = files.length - 1;
+        }
+
+        renderFile(currentIndex);
+    };
+
+});
+
+/* CLOSE MODAL */
+document.getElementById("ghModal").onclick = function (e) {
+
+    // prevent closing when clicking content
+    if (e.target.id !== "ghModal") return;
+
+    this.style.display = "none";
+};
+document.getElementById("ghModal").onclick = function () {
+    this.style.display = "none";
+    document.getElementById("ghModalImg").style.transform = "scale(0.95)";
+};
+
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+  "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+  const pdfThumbCache = {};
+
+  async function generatePdfThumbnail(pdfUrl, callback) {
+    const loadingTask = pdfjsLib.getDocument(pdfUrl);
+
+    const pdf = await loadingTask.promise;
+    const page = await pdf.getPage(1); // FIRST PAGE ONLY
+
+    const viewport = page.getViewport({ scale: 0.5 });
+
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+
+    await page.render({
+        canvasContext: context,
+        viewport: viewport
+    }).promise;
+
+    callback(canvas.toDataURL()); // returns image base64
+}
+
+
+document.addEventListener("mouseover", function (e) {
+
+    const item = e.target.closest(".gh-item");
+    if (!item) return;
+
+    const preview = item.querySelector(".gh-preview");
+    if (!preview) return;
+
+    const files = JSON.parse(preview.dataset.files || "[]");
+
+    if (files.length <= 1) return;
+
+    // PREVENT MULTIPLE INTERVALS
+    if (preview._interval) return;
+
+    let index = 0;
+
+    preview._interval = setInterval(() => {
+
+        index = (index + 1) % files.length;
+
+        const file = files[index];
+
+        // =========================
+        // IMAGE
+        // =========================
+        if (file.type === "image") {
+
+            preview.innerHTML = `
+                <img src="${file.file}">
+
+                <div class="gh-preview-label">
+                    IMAGE • ${index + 1} / ${files.length}
+                </div>
+            `;
+        }
+
+        // =========================
+        // PDF
+        // =========================
+        else if (file.type === "pdf") {
+
+            // CREATE THUMB IF NOT EXIST
+            if (!pdfThumbCache[file.file]) {
+
+                pdfThumbCache[file.file] = "loading";
+
+                let pdfUrl = file.file
+                    .replace(
+                        "raw.githubusercontent.com",
+                        "cdn.jsdelivr.net/gh"
+                    )
+                    .replace("/main/", "@main/");
+
+                generatePdfThumbnail(pdfUrl, (thumb) => {
+
+                    pdfThumbCache[file.file] = thumb;
+
+                    preview.innerHTML = `
+                        <img src="${thumb}">
+
+                        <div class="gh-preview-label">
+                            PDF • ${index + 1} / ${files.length}
+                        </div>
+                    `;
+                });
+
+                preview.innerHTML = `
+                    <div style="
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        height:100%;
+                        font-size:12px;
+                        color:#57606a;
+                    ">
+                        Loading PDF...
+                    </div>
+
+                    <div class="gh-preview-label">
+                        PDF • ${index + 1} / ${files.length}
+                    </div>
+                `;
+            }
+
+            // USE CACHE
+            else if (pdfThumbCache[file.file] !== "loading") {
+
+                preview.innerHTML = `
+                    <img src="${pdfThumbCache[file.file]}">
+
+                    <div class="gh-preview-label">
+                        PDF • ${index + 1} / ${files.length}
+                    </div>
+                `;
+            }
+        }
+
+    }, 1200);
+});
+
+
+document.addEventListener("mouseout", function (e) {
+
+    const item = e.target.closest(".gh-item");
+    if (!item) return;
+
+    const preview = item.querySelector(".gh-preview");
+
+    if (!preview || !preview._interval) return;
+
+    clearInterval(preview._interval);
+
+    preview._interval = null;
+});
+
+document.addEventListener("mouseout", function (e) {
+    const item = e.target.closest(".gh-item");
+    if (!item) return;
+
+    const preview = item.querySelector(".gh-preview");
+    if (!preview || !preview._interval) return;
+
+    clearInterval(preview._interval);
+    preview._interval = null;
+});
+</script>
+
+</body>
+</html>
+
