@@ -1,0 +1,281 @@
+
+{
+  "system": "Working Permit Web System",
+  "versions": [
+    {
+      "id": "wp2",
+      "version": "2.0.0",
+      "datetime": "2026-06-15T10:30:00",
+      "latest": true,
+      "title": "Health Office Workflow and Corporate Multi-Employee Processing",
+      "newFeatures": [
+        {
+          "text": "Implemented one-to-many account structure allowing corporate employers to process multiple employees using a single account",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
+          "text": "Implemented automatic account verification through email address detection. If an existing record is found, the system prompts the user to retrieve previously saved information automatically. This functionality supports one-to-many employer procedures, allowing users with previous employer records to reuse their existing data when applying under a new employer.",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
+          "text": "Added new Health Office user role for medical requirement validation and approval workflow",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
+          "text": "Added new approval flow where applications are forwarded to Health Office after BPLO approval before proceeding to the next step",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
+          "text": "Converted medical findings input into file attachment upload for medical document submission",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
+          "text": "Added Medical Requirements payment module allowing taxpayers to select required medical types and pay online",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
+          "text": "Implemented restriction preventing taxpayers from applying for Working Permit without completed medical requirements",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
+          "text": "Integrated online payment process for medical requirements including EOR generation after successful transaction",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
+          "text": "Added new fields `MasterEmail` and `EnrollmentStatus` in the enrollment table of the SOS_BP database to support the one-to-many enrollment procedure setup. Also configured the module setup table in the SOS_CR database by adding and enabling the one-to-many setup functionality.",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        }
+      ],
+      "improvements": [
+        {
+          "text": "Enhanced system scalability by restructuring the standard one-to-one workflow into one-to-many employer and employee processing",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
+          "text": "Improved transaction workflow by adding Health Office validation stage for better medical compliance checking",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
+          "text": "Improved handling of corporate applications where employers can manage multiple employee applications in a centralized account",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
+          "text": "Enhanced document validation process through medical attachment uploads instead of manual findings entry",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
+          "text": "Improved taxpayer convenience by allowing online payment for medical requirements before proceeding to LGU processing",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        }
+      ],
+      "fixes": [
+        "Fixed workflow issues caused by converting the system from one-to-one into one-to-many account processing",
+        "Fixed application routing issues between BPLO and Health Office approval stages",
+        "Fixed validation logic for mandatory medical requirement checking before Working Permit application"
+      ]
+    },
+    {
+      "id": "wp1",
+      "version": "1.0.0",
+      "datetime": "2026-04-10T09:00:00",
+      "latest": false,
+      "title": "Enhanced Working Permit System Modernization",
+      "newFeatures": [
+        {
+          "text": "Added application tracking and progress monitoring UI or design, so taxpayers can view the current transaction phase of their Working Permit",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
+          "text": "Implemented live tutorial UI guide for first-time users to help them understand the system process and navigation",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
+          "text": "Integrated Working Permit module into the WSP (Web Service Portal) login system",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
+          "text": "Added online payment process for on-premise applicants with account verification and validation before payment",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
+          "text": "Added Medical Requirement section allowing taxpayers to select medical type, findings, and examination date",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
+          "text": "Implemented automated email notifications for every taxpayer application submission, including BPLO approval and rejection status updates.",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        }
+      ],
+      "improvements": [
+        {
+          "text": "Enhanced UI and layout with a modern government-style design while maintaining simplicity and mobile responsiveness",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
+          "text": "Improved taxpayer data synchronization handling different yearly application scenarios between online and on-premise processing",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
+          "text": "Enhanced data entry trapping and validation for more accurate transaction processing",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
+          "text": "Improved file upload experience with modern attachment preview functionality before submission",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
+          "text": "Optimized uploaded image attachments by reducing file size while maintaining image quality",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
+          "text": "Enhanced email notification templates with modern no-reply styled email formatting",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
+          "text": "Improved digital Working Permit preview design with a cleaner and more modern document layout for both taxpayer and BPLO users UI",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        }
+      ],
+      "fixes": [
+        "Fixed payment processing errors during online transactions",
+        "Fixed taxpayer data update handling between online and on-premise yearly applications",
+        "Fixed attachment upload validation and preview issues"
+      ]
+    }
+  ]
+}
