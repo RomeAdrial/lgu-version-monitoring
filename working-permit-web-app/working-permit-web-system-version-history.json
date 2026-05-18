@@ -18,6 +18,15 @@
           ]
         },
         {
+          "text": "Implemented automatic account verification through email address detection. If an existing record is found, the system prompts the user to retrieve previously saved information automatically. This functionality supports one-to-many employer procedures, allowing users with previous employer records to reuse their existing data when applying under a new employer.",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
           "text": "Added new Health Office user role for medical requirement validation and approval workflow",
           "attachments": [
             {
@@ -64,6 +73,15 @@
         },
         {
           "text": "Integrated online payment process for medical requirements including EOR generation after successful transaction",
+          "attachments": [
+            {
+              "type": "",
+              "file": ""
+            }
+          ]
+        },
+        {
+          "text": "Added new fields `MasterEmail` and `EnrollmentStatus` in the enrollment table of the SOS_BP database to support the one-to-many enrollment procedure setup. Also configured the module setup table in the SOS_CR database by adding and enabling the one-to-many setup functionality.",
           "attachments": [
             {
               "type": "",
@@ -133,7 +151,7 @@
       "title": "Enhanced Working Permit System Modernization",
       "newFeatures": [
         {
-          "text": "Added application tracking and progress monitoring so taxpayers can view the current transaction phase of their Working Permit",
+          "text": "Added application tracking and progress monitoring UI or design, so taxpayers can view the current transaction phase of their Working Permit",
           "attachments": [
             {
               "type": "",
@@ -142,7 +160,7 @@
           ]
         },
         {
-          "text": "Implemented live tutorial guide for first-time users to help them understand the system process and navigation",
+          "text": "Implemented live tutorial UI guide for first-time users to help them understand the system process and navigation",
           "attachments": [
             {
               "type": "",
@@ -178,7 +196,7 @@
           ]
         },
         {
-          "text": "Implemented automated email notifications for taxpayer application submission, approval, and rejection updates",
+          "text": "Implemented automated email notifications for every taxpayer application submission, including BPLO approval and rejection status updates.",
           "attachments": [
             {
               "type": "",
@@ -243,7 +261,7 @@
           ]
         },
         {
-          "text": "Improved digital Working Permit preview design with a cleaner and more modern document layout",
+          "text": "Improved digital Working Permit preview design with a cleaner and more modern document layout for both taxpayer and BPLO users UI",
           "attachments": [
             {
               "type": "",
