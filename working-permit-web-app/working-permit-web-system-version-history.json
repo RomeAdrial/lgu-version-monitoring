@@ -72,17 +72,8 @@
   "version": "2.1.0",
   "datetime": "2026-05-04T14:30:00",
   "latest": false,
-  "title": "Digital Miscellaneous Issuance and Timestamp Monitoring",
+  "title": "Timestamp Monitoring",
   "newFeatures": [
-        {
-          "text": "Added Digital Cedula in the issuance process",
-          "attachments": [
-            {
-              "type": "pdf",
-              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/working-permit-web-app/file-attachment-v2.1.0/digital-sample.pdf"
-            }
-          ]
-        },
         {
           "text": "Added timestamp tracking feature for monitoring transaction processing flow",
           "attachments": [
@@ -104,15 +95,6 @@
       ],
 
   "improvements":[
-        {
-          "text": "Improved issuance process by supporting Digital Cedula for faster and more convenient transactions",
-          "attachments": [
-            {
-              "type": "",
-              "file": ""
-            }
-          ]
-        },
         {
           "text": "Enhanced transaction monitoring by recording processing timestamps and workflow activities",
           "attachments": [
