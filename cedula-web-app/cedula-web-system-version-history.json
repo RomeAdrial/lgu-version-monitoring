@@ -71,7 +71,7 @@
     {
       "id": "c3",
       "version": "2.2.0",
-      "datetime": "2026-04-05T14:30:00",
+      "datetime": "2026-04-07T14:30:00",
       "latest": false,
       "title": "Cedula System Timestamp Tracking and DOC_TRACK Audit Trail Enhancement",
       "newFeatures": [
@@ -139,7 +139,7 @@
     {
       "id": "c2",
       "version": "2.1.0",
-      "datetime": "2026-03-15T09:30:00",
+      "datetime": "2026-03-16T09:30:00",
       "latest": false,
       "title": "Comprehensive Update: Government UI Revamp, Digital Cedula, Email Notifications",
 
