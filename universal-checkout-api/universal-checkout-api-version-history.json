@@ -2,10 +2,87 @@
   "system": "Universal Checkout API System",
   "versions": [
     {
+  "id": "uc3",
+  "version": "2.2.0",
+  "datetime": "2026-05-18T13:30:00",
+  "latest": true,
+  "title": "BRRS WEB and PTMS WEB Integration in Universal Checkout API",
+  "newFeatures": [
+    {
+      "text": "Integrated BRRS WEB system into the Universal Checkout API to support online payment processing through the centralized checkout platform",
+      "attachments": [
+        {
+          "type": "",
+          "file": ""
+        }
+      ]
+    },
+    {
+      "text": "Integrated PTMS WEB system into the Universal Checkout API enabling payment transactions through the shared payment gateway infrastructure",
+      "attachments": [
+        {
+          "type": "",
+          "file": ""
+        }
+      ]
+    },
+    {
+      "text": "Added new configuration setup for BRRS WEB and PTMS WEB including system identification, payment routing, and callback configuration in the Universal Checkout API",
+      "attachments": [
+        {
+          "type": "",
+          "file": ""
+        }
+      ]
+    },
+    {
+      "text": "Updated backend API logic and transaction handling code to support payment requests and responses for newly integrated systems",
+      "attachments": [
+        {
+          "type": "",
+          "file": ""
+        }
+      ]
+    }
+  ],
+  "improvements": [
+    {
+      "text": "Improved scalability of the Universal Checkout API by allowing additional systems to be integrated through configurable setup",
+      "attachments": [
+        {
+          "type": "",
+          "file": ""
+        }
+      ]
+    },
+    {
+      "text": "Enhanced payment processing compatibility between Universal Checkout API and integrated LGU web systems",
+      "attachments": [
+        {
+          "type": "",
+          "file": ""
+        }
+      ]
+    },
+    {
+      "text": "Optimized transaction flow and configuration management for easier onboarding of future systems into the Universal Checkout platform",
+      "attachments": [
+        {
+          "type": "",
+          "file": ""
+        }
+      ]
+    }
+  ],
+  "fixes": [
+    "Adjusted API code and configuration mappings to ensure proper payment request handling and response processing for BRRS WEB and PTMS WEB systems"
+  ]
+},
+    {
       "id": "uc2",
       "version": "2.1.0",
       "datetime": "2026-05-18T13:30:00",
-      "latest": true,
+      "latest": false,
       "title": "Gateway Resilience Page, GCash Callback Logging, and UI Enhancement",
       "newFeatures": [
         {
