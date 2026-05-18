@@ -12,8 +12,8 @@
           "text": "Added a payment gateway downtime/maintenance landing page that automatically displays when the checkout provider is unreachable or experiencing issues",
           "attachments": [
             {
-              "type": "",
-              "file": ""
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/universal-checkout-api/file-attachment-v2.1.0/universal-checkout-payment-gateway-failed.jpg"
             }
           ]
         },
@@ -30,7 +30,7 @@
           "text": "Created GcashNotificationLogs table in SOS_OIAMS database with fields: TransactionID, Status, AccountNo, AssessmentNo, PaymentGateway, DateTimeReceived, Payload, StatusInGcash, CallbackTriggerByGcash",
           "attachments": [
             {
-              "type": "image",
+              "type": "",
               "file": ""
             }
           ]
@@ -39,8 +39,8 @@
           "text": "Enhanced payment confirmation page with a modern, responsive UI design for better user experience across devices",
           "attachments": [
             {
-              "type": "",
-              "file": ""
+              "type": "image",
+              "file": "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/universal-checkout-api/file-attachment-v2.1.0/universal-checkout-payment-success.jpg"
             }
           ]
         }
