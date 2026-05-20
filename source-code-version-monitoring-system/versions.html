@@ -6,6 +6,261 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 
 <style>
+    /* =========================
+   GITHUB-STYLE TREE SIDEBAR
+========================= */
+.at-header{
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:10px 16px;
+
+    background:#ffffff;
+
+    border-bottom:1px solid #e5e7eb;
+
+    margin:-18px -18px 14px -18px;
+
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* LEFT */
+.at-left{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+}
+
+/* TITLE */
+.at-title{
+    font-size:14.5px;
+    font-weight:600;
+    color:#111827;
+}
+
+/* PATH / DESCRIPTION */
+.at-path{
+    font-size:11.5px;
+    color:#6b7280;
+}
+
+/* RIGHT SIDE */
+.at-right{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+/* CHIP */
+.at-chip{
+
+    font-size:11px;
+    font-weight:600;
+
+    padding:4px 10px;
+
+    border-radius:999px;
+
+    background:#f9fafb;
+
+    border:1px solid #e5e7eb;
+
+    color:#111827;
+
+    cursor:pointer;
+
+    transition:0.15s ease;
+}
+
+.at-chip:hover{
+    border-color:#cbd5e1;
+    background:#ffffff;
+}
+
+/* separator */
+.at-sep{
+    width:1px;
+    height:14px;
+    background:#e5e7eb;
+}
+
+/* STATE */
+.at-state{
+    font-size:11px;
+    color:#6b7280;
+}
+.sidebar {
+    width: 270px;
+    background: #ffffff;
+    height: 100vh;
+    border-right: 1px solid #d0d7de;
+    padding: 12px 10px;
+    position: fixed;
+    overflow-y: auto;
+
+    font-size: 13px;
+}
+
+/* title */
+.sidebar h2 {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #57606a;
+    margin: 0 0 12px 8px;
+    letter-spacing: .4px;
+}
+
+/* system block */
+.system {
+    margin-bottom: 2px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.system-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 5px 8px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+    user-select: none;
+
+    color: #24292f;
+    font-size: 13px;
+    font-weight: 400;
+
+    transition: background .12s ease;
+}
+
+.system-header:hover {
+    background: #f6f8fa;
+}
+
+/* active */
+.system-header.active {
+    background: #e7f3ff;
+    color: #0969da;
+    font-weight: 600;
+}
+
+/* =========================
+   ARROW
+========================= */
+
+.tree-arrow {
+    width: 12px;
+    min-width: 15px;
+    font-size: 13px;
+    color: #899098;
+    transition: transform .12s ease;
+    font-weight: bold;
+    margin-right: 8px;
+    margin-left: -3px;
+}
+
+/* rotate when open */
+.system.open .tree-arrow {
+    transform: rotate(90deg);
+}
+
+/* =========================
+   FOLDER ICON
+========================= */
+.folder-svg path {
+    fill: #54aeff; /* closed color */
+   
+}
+
+.folder-svg {
+    width: 16px;
+    height: 16px;
+    transition: .15s ease;
+}
+
+/* closed */
+.folder-closed {
+    fill: #54aeff;
+}
+
+/* opened */
+.system.open .folder-closed {
+    fill: #d29922;
+}
+
+/* =========================
+   NAME
+========================= */
+
+.system-name {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* =========================
+   TREE CONTENT
+========================= */
+
+.system-content {
+    display: none;
+    margin-left: 18px;
+    padding-left: 10px;
+
+    border-left: 1px solid #d8dee4;
+}
+
+/* open */
+.system.open .system-content {
+    display: block;
+}
+
+/* =========================
+   VERSION FILE
+========================= */
+
+.tree-item{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin-left: 10px;
+}
+
+.tree-file-icon{
+    display:flex;
+    align-items:center;
+    font-size: 15px;
+}
+
+.file-svg{
+    width:16px;
+    height:16px;
+    fill:currentColor;
+    flex-shrink:0;
+}
+/* hover */
+.tree-item:hover {
+    background: #f6f8fa;
+    color: #0969da;
+}
+
+/* active file */
+.tree-item.active {
+    background: #e7f3ff;
+    color: #0969da;
+    font-weight: 600;
+}
+
+
 .meta-pill {
     background: #f6f8fa;
     border: 1px solid #d0d7de;
@@ -362,10 +617,10 @@ html {
 .system-header.active::before {
     content: "";
     position: absolute;
-    left: -16px;
-    top: 8px;
-    bottom: 8px;
-    width: 3px;
+    left: -8px;
+    top: 4px;
+    bottom: 4px;
+    width: 4px;
     background: var(--primary);
     border-radius: 2px;
 }
@@ -470,7 +725,7 @@ body {
 }
 
 .system {
-    margin-bottom: 8px;
+    margin-bottom: 0px;
 }
 
 .system-header {
@@ -654,7 +909,35 @@ ul li {
 
 <!-- RIGHT PANEL -->
 <div class="right-panel" id="rightPanel">
-    <h3>Release Inspector</h3>
+    <div class="at-header">
+
+    <div class="at-left">
+
+        <div class="at-title">
+            Release Inspector
+        </div>
+
+        <div class="at-path">
+            Inspect detailed version changes
+        </div>
+
+    </div>
+
+    <div class="at-right">
+
+        <div class="at-chip">
+            All Systems
+        </div>
+
+        <div class="at-sep"></div>
+
+        <div class="at-state">
+            Ready
+        </div>
+
+    </div>
+
+</div>
     <div class="placeholder">Click a version to inspect changes.</div>
 </div>
 
@@ -1191,6 +1474,13 @@ ul li {
 let systemsData = [];
 let currentSystem = null;
 let filterMode = "";
+const FOLDER_CLOSED =
+"M1.75 1A1.75 1.75 0 0 0 0 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0 0 16 13.25v-8.5A1.75 1.75 0 0 0 14.25 3H7.5a.25.25 0 0 1-.2-.1l-.9-1.2C6.07 1.26 5.55 1 5 1H1.75Z";
+
+// slightly "open folder" style (GitHub-like tilt/open top feel)
+const FOLDER_OPEN =
+"M.513 1.513A1.75 1.75 0 0 1 1.75 1h3.5c.55 0 1.07.26 1.4.7l.9 1.2a.25.25 0 0 0 .2.1H13a1 1 0 0 1 1 1v.5H2.75a.75.75 0 0 0 0 1.5h11.978a1 1 0 0 1 .994 1.117L15 13.25A1.75 1.75 0 0 1 13.25 15H1.75A1.75 1.75 0 0 1 0 13.25V2.75c0-.464.184-.91.513-1.237Z";
+
 
 const systemFiles = [
   "https://raw.githubusercontent.com/RomeAdrial/lgu-version-monitoring/main/cedula-web-app/cedula-web-system-version-history.json",
@@ -1221,35 +1511,71 @@ async function loadFile(url) {
 }
 /* SIDEBAR */
 function renderSidebar() {
-  
+
     const sidebar = document.getElementById("sidebar");
 
     sidebar.innerHTML = `
         <div class="system">
             <div class="system-header active" id="allBtn">
-                All Systems
+
+                <span class="tree-arrow" style="margin-left:-22px"></span>
+
+                <svg class="folder-svg" viewBox="0 0 16 16">
+                    <path class="folder-path"
+                          d="M1.75 1A1.75 1.75 0 0 0 0 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0 0 16 13.25v-8.5A1.75 1.75 0 0 0 14.25 3H7.5a.25.25 0 0 1-.2-.1l-.9-1.2C6.07 1.26 5.55 1 5 1H1.75Z">
+                    </path>
+                </svg>
+
+                <span class="system-name">All Systems</span>
             </div>
         </div>
     `;
 
     systemsData.forEach((sys, index) => {
+
         const id = "sys_" + index;
 
         sidebar.innerHTML += `
         <div class="system">
-            <div class="system-header" data-system="${sys.system}" onclick="clearReleaseInspector()">
-                <span>${sys.system}</span>
-                <span class="toggle" data-id="${id}">▶</span>
+
+            <div class="system-header"
+                 data-system="${sys.system}"
+                 data-id="${id}">
+
+                <!-- ARROW -->
+                <span class="tree-arrow" style="margin-top:6px">
+                    <svg class="arrow-svg" viewBox="0 0 16 16" fill="#899098">
+                        <path d="M4.7 10c-.2 0-.4-.1-.5-.2-.3-.3-.3-.8 0-1.1L6.9 6 4.2 3.3c-.3-.3-.3-.8 0-1.1.3-.3.8-.3 1.1 0l3.3 3.2c.3.3.3.8 0 1.1L5.3 9.7c-.2.2-.4.3-.6.3Z"></path>
+                    </svg>
+                </span>
+
+                <!-- FOLDER -->
+                <svg class="folder-svg" viewBox="0 0 16 16">
+                    <path class="folder-path" 
+                          d="M1.75 1A1.75 1.75 0 0 0 0 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0 0 16 13.25v-8.5A1.75 1.75 0 0 0 14.25 3H7.5a.25.25 0 0 1-.2-.1l-.9-1.2C6.07 1.26 5.55 1 5 1H1.75Z">
+                    </path>
+                </svg>
+
+                <span class="system-name">${sys.system}</span>
+
             </div>
 
             <div class="system-content" id="${id}">
                 ${sys.versions.map(v => `
-                    <a href="#${v.id}" data-system="${sys.system}">
-                        v${v.version}
+                    <a class="tree-item" href="#${v.id}">
+                       <span class="tree-file-icon">
+    <svg class="file-svg" viewBox="0 0 16 16">
+        <path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513 1.237.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"></path>
+    </svg>
+       &nbsp&nbsp   v${v.version}
+</span>
+                  
                     </a>
                 `).join("")}
             </div>
-        </div>`;
+
+        </div>
+        `;
     });
 
     attachEvents();
@@ -1257,40 +1583,109 @@ function renderSidebar() {
 
 function clearReleaseInspector(){
 
-document.getElementById('rightPanel').innerHTML ="<h3>Release Inspector</h3><div class='placeholder'>Click a version to inspect changes.</div>";
+document.getElementById('rightPanel').innerHTML =`<div class="at-header">
+
+    <div class="at-left">
+
+        <div class="at-title">
+            Release Inspector
+        </div>
+
+        <div class="at-path">
+            Inspect detailed version changes
+        </div>
+
+    </div>
+
+    <div class="at-right">
+
+        <div class="at-chip">
+            All Systems
+        </div>
+
+        <div class="at-sep"></div>
+
+        <div class="at-state">
+            Ready
+        </div>
+
+    </div>
+
+</div>
+ <div class="placeholder">Click a version to inspect changes.</div>
+`;
 }
 
-document.addEventListener("click", function (e) {
-    if (e.target.closest(".system-header")) {
-        clearReleaseInspector();
-    }
-});
+
 /* EVENTS */
 function attachEvents() {
 
     document.getElementById("allBtn").onclick = () => {
+
         currentSystem = null;
+
         setActive(null);
+
         renderContent();
+
+        clearReleaseInspector();
+
+        document.querySelectorAll(".system").forEach(sys => {
+            sys.classList.remove("open");
+
+            const folder = sys.querySelector(".folder-path");
+            if (folder) folder.setAttribute("d", FOLDER_CLOSED);
+
+            const arrow = sys.querySelector(".arrow-svg");
+            if (arrow) arrow.style.transform = "rotate(0deg)";
+        });
     };
 
     document.querySelectorAll(".system-header").forEach(header => {
-    
-        header.onclick = function (e) {
-           
-            if (e.target.classList.contains("toggle")) return;
-            currentSystem = this.dataset.system || null;
+
+        if (header.id === "allBtn") return;
+
+        header.onclick = function () {
+
+            const parent = this.closest(".system");
+
+            const isOpen = parent.classList.toggle("open");
+
+            // CLOSE OTHER SYSTEMS
+            document.querySelectorAll(".system").forEach(sys => {
+                if (sys !== parent) {
+
+                    sys.classList.remove("open");
+
+                    const folder = sys.querySelector(".folder-path");
+                    if (folder) folder.setAttribute("d", FOLDER_CLOSED);
+
+                    const arrow = sys.querySelector(".arrow-svg");
+                    if (arrow) arrow.style.transform = "rotate(0deg)";
+                }
+            });
+
+            // TOGGLE FOLDER ICON
+            const folder = parent.querySelector(".folder-path");
+            if (folder) {
+                folder.setAttribute(
+                    "d",
+                    isOpen ? FOLDER_OPEN : FOLDER_CLOSED
+                );
+            }
+
+            // ROTATE ARROW
+            const arrow = parent.querySelector(".arrow-svg");
+            if (arrow) {
+                arrow.style.transition = "0.15s ease";
+                arrow.style.transform = isOpen ? "rotate(0deg)" : "rotate(0deg)";
+            }
+
+            currentSystem = this.dataset.system;
+
             setActive(this);
             renderContent();
-        };
-    });
-
-    document.querySelectorAll(".toggle").forEach(btn => {
-        btn.onclick = function (e) {
-            const el = document.getElementById(this.dataset.id);
-            el.style.display = el.style.display === "block" ? "none" : "block";
-            this.textContent = el.style.display === "block" ? "▼" : "▶";
-            e.stopPropagation();
+            clearReleaseInspector();
         };
     });
 }
@@ -1373,14 +1768,35 @@ function renderRightPanel(v) {
     const isLatest = v.latest === true;
 
     panel.innerHTML = `
-        <h3 style="
-            margin-bottom:10px;
-            font-size:14px;
-            font-weight:700;
-            color:#24292f;
-        ">
+    <div class="at-header">
+
+    <div class="at-left">
+
+        <div class="at-title">
             Release Inspector
-        </h3>
+        </div>
+
+        <div class="at-path">
+            Inspect detailed version changes
+        </div>
+
+    </div>
+
+    <div class="at-right">
+
+        <div class="at-chip">
+             ${v.system}
+        </div>
+
+        <div class="at-sep"></div>
+
+        <div class="at-state">
+            Ready
+        </div>
+
+    </div>
+
+</div>
 
         <!-- META CARD -->
         <div class="panel-meta" style="
